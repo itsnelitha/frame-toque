@@ -3,22 +3,22 @@ export default function AboutUs() {
     {
       name: "Kavinu Pasandul",
       role: "Video Editor",
-      image: "/team/kavinu.jpg",
+      image: "/projects/smurf.webp",
     },
         {
       name: "Tharul Bandara",
       role: "Graphic Designer",
-      image: "/team/tharul.jpg",
+      image: "/projects/smurf.webp",
     },
     {
       name: "Nelitha Priyawansha",
       role: "Founder & CEO",
-      image: "/team/nelitha.jpg",
+      image: "/projects/smurf.webp",
     },
     {
       name: "Sadaka",
       role: "Developer",
-      image: "/team/sadaka.jpg",
+      image: "/projects/smurf.webp",
     }
   ];
 
