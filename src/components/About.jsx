@@ -12,7 +12,7 @@ export default function AboutUs() {
     },
     {
       name: "Nelitha Priyawansha",
-      role: "Founder & CEO",
+      role: "Developer",
       image: "/projects/smurf.webp",
     },
     {
