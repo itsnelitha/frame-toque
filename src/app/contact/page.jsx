@@ -23,24 +23,29 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
       <Navbar />
-<br /> <br /><br />
+<br /> <br /><br /> <br />
       {/* Hero Section */}
       <section className="relative bg-slate-950/30 backdrop-blur-md py-5 px-4 sm:px-6 lg:px-8 text-center">
        {/* Pulse */}
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-        <h2 className="text-4xl sm:text-5xl font-bold mb-3">
-          <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
+        {/* Title */}
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
+          <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
             Contact&nbsp;
           </span>
           <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
             Us
           </span>
         </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-          yeeeeeeeeeeeeeeeeeeee
+
+        <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          yooooooooooooooooooooooo
         </p>
+      </div>
+
       </section>
 
       {/* Contact Form */}
