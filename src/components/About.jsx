@@ -28,13 +28,19 @@ export default function AboutUs() {
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      {/* About Section */}
-      <div className="max-w-6xl mx-auto mb-16 text-center lg:text-left">
-        <h2 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-          About Us
+      {/* Title */}
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
+          <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+            About&nbsp;
+          </span>
+          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
+            Us
+          </span>
         </h2>
-        <p className="text-gray-400 text-lg sm:text-xl max-w-3xl mx-auto lg:mx-0">
-          blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+        <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          yooooooooooooooooooooooo
         </p>
       </div>
 
