@@ -65,6 +65,7 @@ export default function Navbar({ scrolled }) {
 
           {/* Mobile menu button */}
           <button
+          aria-label="Toggle Menu"
             className="md:hidden p-2 text-gray-300 hover:text-white"
             onClick={() => setMobileMenuIsOpen((prev) => !prev)}
           >
