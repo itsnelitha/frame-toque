@@ -129,6 +129,7 @@ export default function ProjectsMain() {
                 {project.type === "web" && (
                   <>
                     <Link
+                      name="View on GitHub"
                       href={project.github}
                       target="_blank"
                       className="
@@ -143,6 +144,7 @@ export default function ProjectsMain() {
 
                     {project.live && (
                       <Link
+                      name="View Live Site"
                         href={project.live}
                         target="_blank"
                         className="
@@ -160,6 +162,7 @@ export default function ProjectsMain() {
 
                 {project.type === "video" && (
                   <Link
+                  name="Watch on YouTube"
                     href={project.youtube}
                     target="_blank"
                     className="

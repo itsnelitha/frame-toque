@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Send, Music2, Linkedin, Instagram, Mail } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -86,6 +87,7 @@ export default function ContactPage() {
           />
 
           <button
+          name="Send Message"
             type="submit"
             className="w-full sm:w-auto bg-gradient-to-b from-green-600 to-green-400 text-white px-6 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300 flex items-center justify-center space-x-2"
           >
@@ -102,14 +104,15 @@ export default function ContactPage() {
             { href: "https://instagram.com/frame.toque", icon: <Instagram /> },
             { href: "mailto:frametoque@gmail.com", icon: <Mail /> }
           ].map((link, idx) => (
-            <a
+            <Link
+            name="Connect With Us"
               key={idx}
               href={link.href}
               target="_blank"
               className="p-3 bg-slate-800/50 hover:bg-slate-700/50 transition-colors rounded-xl flex items-center justify-center"
             >
               {link.icon}
-            </a>
+            </Link>
           ))}
         </div>
       </section>

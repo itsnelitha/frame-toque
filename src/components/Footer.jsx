@@ -36,6 +36,7 @@ export default function Footer() {
             <div className="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
               {[Send, Music2, Linkedin, Instagram, Mail].map((Icon, idx) => (
               <Link
+                name="Connect With Us"
                 key={idx}
                 href={urls[idx]}
                 target="_blank"
