@@ -2,10 +2,19 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function Navbar({ scrolled }) {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
+  const pathname = usePathname();
+
+   const links = [
+    { href: "/about", label: "About Us" },
+    { href: "/projects", label: "Our Projects" },
+    { href: "/contact", label: "Contact Us" },
+    { href: "/services", label: "Start Your Project", special: true },
+  ];
 
   return (
     <nav
@@ -32,30 +41,28 @@ export default function Navbar({ scrolled }) {
           </div>
           </Link>
           {/* Nav Links (desktop) */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link
-              href="/about"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              About Us </Link>
-            <Link
-              href="/projects"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              Our Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              Contact Us
-            </Link>        
-            <Link
-              href="/services"
-              className="bg-gradient-to-b from-green-500 to-green-500 text-white text-sm lg:text-base px-4 py-2 rounded-lg font-semibold hover:scale-102 transition-transform duration-300"
-            >
-              Start Your Project
-            </Link>
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8 active">
+            {links.map((link) => {
+        const isActive = pathname === link.href;
+
+        const baseClasses = link.special
+          ? "px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-b from-green-500 to-green-500 transition-transform duration-300"
+          : "text-sm lg:text-base transition-colors duration-300";
+
+        return (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`${baseClasses} ${
+              !link.special && isActive
+              ? "text-white font-bold" 
+              : "text-gray-300 hover:text-white"
+            } ${link.special ? "hover:scale-102" : ""}`}
+          >
+            {link.label}
+          </Link>
+        );
+      })}
           </div>
 
           {/* Mobile menu button */}

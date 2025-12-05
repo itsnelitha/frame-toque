@@ -62,6 +62,9 @@ export default function ProjectsMain() {
     <Navbar scrolled={scrolled} />
       <br/>
     <section className="min-h-screen bg-slate-950 text-white py-20 px-6 sm:px-10 lg:px-16">
+             {/* Pulse */}
+      <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
       {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
