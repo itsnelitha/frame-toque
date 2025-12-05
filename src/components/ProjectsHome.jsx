@@ -177,7 +177,7 @@ export default function ProjectsHome() {
         <Link
         aria-label="View More Projects"
           href="/projects"
-          className="inline-block px-6 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-lg transition"
+          className="inline-block px-6 py-2 rounded-lg bg-gradient-to-b from-green-500 to-green-500 text-white text-lg transition"
         >
           View More →
         </Link>
