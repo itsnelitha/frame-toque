@@ -49,7 +49,7 @@ export default function Privacy() {
             <div>
               <h2 className="text-2xl font-semibold mb-2">5. Your Rights</h2>
               <p className="text-gray-300 leading-relaxed">
-                You can request access to, update, or delete your personal information at any time. For such requests, please <Link href="/contact" className="text-green-400">contact us</Link>.
+                You can request access to, update, or delete your personal information at any time. For such requests, please <Link href="/contact" className="text-green-600 hover:text-green-500 font-semibold">contact us</Link>.
               </p>
             </div>
 
