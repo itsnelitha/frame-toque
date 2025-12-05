@@ -129,7 +129,7 @@ export default function ProjectsMain() {
                 {project.type === "web" && (
                   <>
                     <Link
-                      name="View on GitHub"
+                      aria-label="View on GitHub"
                       href={project.github}
                       target="_blank"
                       className="
@@ -144,7 +144,7 @@ export default function ProjectsMain() {
 
                     {project.live && (
                       <Link
-                      name="View Live Site"
+                      aria-label="View Live Site"
                         href={project.live}
                         target="_blank"
                         className="
@@ -162,7 +162,7 @@ export default function ProjectsMain() {
 
                 {project.type === "video" && (
                   <Link
-                  name="Watch on YouTube"
+                  aria-label="Watch on YouTube"
                     href={project.youtube}
                     target="_blank"
                     className="
@@ -178,7 +178,7 @@ export default function ProjectsMain() {
 
                 {project.type === "graphic" && (
                   <button
-                  name="view"
+                  aria-label="view"
                     onClick={() => setPopupImage(project.image)}
                     className="
                       bg-purple-500/20 hover:bg-purple-500/30 

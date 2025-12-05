@@ -83,7 +83,9 @@ export default function ProjectsHome() {
               {project.category}
             </span>
             <div className="w-full aspect-square overflow-hidden">
-              <img
+              <Image
+              width={1000}
+              height={1000}
                 src={project.image}
                 alt={project.title}
                 className="
@@ -104,6 +106,7 @@ export default function ProjectsHome() {
                 {project.type === "web" && (
                   <>
                     <Link
+                      aria-label="View on GitHub"
                       href={project.github}
                       target="_blank"
                       className="
@@ -117,7 +120,8 @@ export default function ProjectsHome() {
                     </Link>
 
                     {project.live && (
-                      <a
+                      <Link
+                        aria-label="View Live Site"
                         href={project.live}
                         target="_blank"
                         className="
@@ -128,13 +132,14 @@ export default function ProjectsHome() {
                         "
                       >
                         <Globe className="w-5 h-5" />
-                      </a>
+                      </Link>
                     )}
                   </>
                 )}
 
                 {project.type === "video" && (
                   <Link
+                    aria-label="Watch on YouTube"
                     href={project.youtube}
                     target="_blank"
                     className="
@@ -149,7 +154,7 @@ export default function ProjectsHome() {
                 )}
 
                 {project.type === "graphic" && (
-                  <button name="view"
+                  <button aria-label="view"
                     onClick={() => setPopupImage(project.image)}
                     className="
                       bg-purple-500/20 hover:bg-purple-500/30 
@@ -170,6 +175,7 @@ export default function ProjectsHome() {
 
       <div className="text-center mt-12">
         <Link
+        aria-label="View More Projects"
           href="/projects"
           className="inline-block px-6 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-lg transition"
         >

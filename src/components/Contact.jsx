@@ -87,7 +87,7 @@ export default function ContactPage() {
           />
 
           <button
-          name="Send Message"
+          aria-label="Send Message"
             type="submit"
             className="w-full sm:w-auto bg-gradient-to-b from-green-600 to-green-400 text-white px-6 py-3 rounded-xl font-semibold hover:scale-102 transition-transform duration-300 flex items-center justify-center space-x-2"
           >
@@ -105,7 +105,7 @@ export default function ContactPage() {
             { href: "mailto:frametoque@gmail.com", icon: <Mail /> }
           ].map((link, idx) => (
             <Link
-            name="Connect With Us"
+            aria-label="Connect With Us"
               key={idx}
               href={link.href}
               target="_blank"
