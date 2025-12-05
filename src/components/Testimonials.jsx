@@ -71,9 +71,9 @@ export default function Testimonials() {
                           className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
                         />
                         <div>
-                          <h4 className="font-semibold text-white text-sm sm:text-base">
+                          <h3 className="font-semibold text-white text-sm sm:text-base">
                             {testimonial.name}
-                          </h4>
+                          </h3>
                           <p className="text-xs sm:text-sm text-gray-400">
                             {testimonial.role}
                           </p>

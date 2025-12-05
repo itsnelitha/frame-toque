@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Github, Globe, Youtube, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ProjectsHome() {
   const [popupImage, setPopupImage] = useState(null);
@@ -102,7 +103,7 @@ export default function ProjectsHome() {
 
                 {project.type === "web" && (
                   <>
-                    <a
+                    <Link
                       href={project.github}
                       target="_blank"
                       className="
@@ -113,7 +114,7 @@ export default function ProjectsHome() {
                       "
                     >
                       <Github className="w-5 h-5" />
-                    </a>
+                    </Link>
 
                     {project.live && (
                       <a
@@ -133,7 +134,7 @@ export default function ProjectsHome() {
                 )}
 
                 {project.type === "video" && (
-                  <a
+                  <Link
                     href={project.youtube}
                     target="_blank"
                     className="
@@ -144,11 +145,11 @@ export default function ProjectsHome() {
                     "
                   >
                     <Youtube className="w-5 h-5" />
-                  </a>
+                  </Link>
                 )}
 
                 {project.type === "graphic" && (
-                  <button
+                  <button name="view"
                     onClick={() => setPopupImage(project.image)}
                     className="
                       bg-purple-500/20 hover:bg-purple-500/30 
@@ -181,9 +182,11 @@ export default function ProjectsHome() {
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 cursor-pointer"
           onClick={() => setPopupImage(null)}
         >
-          <img
+          <Image
             src={popupImage}
             alt="Popup"
+            width={1000}
+            height={1000}
             className="max-h-full max-w-full rounded-lg shadow-xl"
           />
         </div>

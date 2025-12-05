@@ -1,4 +1,4 @@
-import { Github, Send, Linkedin, Mail, Instagram } from "lucide-react";
+import { Music2, Send, Linkedin, Mail, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,9 +8,9 @@ const footerLinks = {
 };
 const urls = [
   "https://t.me/frametoque",
-  "https://github.com/frametoque",
+  "https://tiktok.com/frametoque",
   "https://linkedin.com/in/company/frametoque",
-  "https://instagram.com/frametoque",
+  "https://instagram.com/frame.toque",
   "mailto:frametoque@gmail.com"
 ];
 
@@ -23,7 +23,7 @@ export default function Footer() {
             <div className="flex items-center justify-center sm:justify-start space-x-2 mb-3 sm:mb-4">
            
               <Image
-                src="/images/name-logo.png"
+                src="/logos/ft/name-logo.png"
                 alt="Frame Toque"
                 width={200}
                 height={40}   
@@ -34,7 +34,7 @@ export default function Footer() {
               Simple.Unique.
             </p>
             <div className="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
-              {[Send, Github, Linkedin, Instagram, Mail].map((Icon, idx) => (
+              {[Send, Music2, Linkedin, Instagram, Mail].map((Icon, idx) => (
               <Link
                 key={idx}
                 href={urls[idx]}

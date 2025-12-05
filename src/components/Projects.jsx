@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar.jsx";
 import Footer from "@/components/Footer.jsx";
 import { Github, Globe, Youtube, Eye } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function ProjectsMain() {
 
@@ -126,7 +128,7 @@ export default function ProjectsMain() {
 
                 {project.type === "web" && (
                   <>
-                    <a
+                    <Link
                       href={project.github}
                       target="_blank"
                       className="
@@ -137,10 +139,10 @@ export default function ProjectsMain() {
                       "
                     >
                       <Github className="w-5 h-5" />
-                    </a>
+                    </Link>
 
                     {project.live && (
-                      <a
+                      <Link
                         href={project.live}
                         target="_blank"
                         className="
@@ -151,13 +153,13 @@ export default function ProjectsMain() {
                         "
                       >
                         <Globe className="w-5 h-5" />
-                      </a>
+                      </Link>
                     )}
                   </>
                 )}
 
                 {project.type === "video" && (
-                  <a
+                  <Link
                     href={project.youtube}
                     target="_blank"
                     className="
@@ -168,11 +170,12 @@ export default function ProjectsMain() {
                     "
                   >
                     <Youtube className="w-5 h-5" />
-                  </a>
+                  </Link>
                 )}
 
                 {project.type === "graphic" && (
                   <button
+                  name="view"
                     onClick={() => setPopupImage(project.image)}
                     className="
                       bg-purple-500/20 hover:bg-purple-500/30 
@@ -195,7 +198,9 @@ export default function ProjectsMain() {
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 cursor-pointer backdrop-blur-sm"
           onClick={() => setPopupImage(null)}
         >
-          <img
+          <Image
+          width={1000}
+          height={1000}
             src={popupImage}
             alt="Popup"
             className="max-h-full max-w-full rounded-xl shadow-2xl"

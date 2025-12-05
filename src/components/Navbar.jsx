@@ -30,7 +30,7 @@ export default function Navbar({ scrolled }) {
           <div className="flex items-center space-x-1 group cursor-pointer">
             <div>
              <Image
-                src="/images/name-logo.png"
+                src="/logos/ft/name-logo.png"
                 alt="Frame Toque"
                 width={200}     
                 height={40}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Github, Linkedin, Instagram, Mail } from "lucide-react";
+import { Send, Music2, Linkedin, Instagram, Mail } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
@@ -97,9 +97,9 @@ export default function ContactPage() {
         <div className="mt-8 flex justify-center space-x-4 sm:space-x-6">
           {[ 
             { href: "https://tg.me/frametoque", icon: <Send /> },
-            { href: "https://github.com/frametoque", icon: <Github /> },
+            { href: "https://tiktok.com/frametoque", icon: <Music2 /> },
             { href: "https://linkedin.com/company/frametoque", icon: <Linkedin /> },
-            { href: "https://instagram.com/frametoque", icon: <Instagram /> },
+            { href: "https://instagram.com/frame.toque", icon: <Instagram /> },
             { href: "mailto:frametoque@gmail.com", icon: <Mail /> }
           ].map((link, idx) => (
             <a
