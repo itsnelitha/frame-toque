@@ -13,11 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Frame Toque",
-  description: "Transform your ideas into reality with our expert services: stunning websites that convert, eye-catching graphics that captivate, and smooth, professional video editing that tells your story. We make your brand stand out online and offline.",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
