@@ -44,7 +44,7 @@ export default function Navbar({ scrolled }) {
         const isActive = pathname === link.href;
 
         const baseClasses = link.special
-          ? "px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-b from-green-500 to-green-500 transition-transform duration-300"
+          ? "px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-b from-green-600 to-green-700 transition-transform duration-300"
           : "text-sm lg:text-base transition-colors duration-300";
 
         return (

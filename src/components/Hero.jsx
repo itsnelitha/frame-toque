@@ -65,7 +65,7 @@ export default function Hero() {
 
                 <Link
                   href="/services"
-                  className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-green-500 to-green-500 text-white rounded-lg font-semibold text-sm sm:text-base hover:scale-102 transition-transform duration-300 flex items-center justify-center"
+                  className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-green-600 to-green-700 text-white rounded-lg font-semibold text-sm sm:text-base hover:scale-102 transition-transform duration-300 flex items-center justify-center"
                 >
                  Start Your Project
                 </Link>
