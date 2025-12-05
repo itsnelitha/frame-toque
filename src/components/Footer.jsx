@@ -1,5 +1,6 @@
 import { Github, Send, Linkedin, Mail, Instagram } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = {
   Company: ["About", "Projects", "Contact"],
@@ -35,7 +36,7 @@ export default function Footer() {
             </p>
             <div className="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
               {[Send, Github, Linkedin, Instagram, Mail].map((Icon, idx) => (
-              <a
+              <Link
                 key={idx}
                 href={urls[idx]}
                 target="_blank"
@@ -43,7 +44,7 @@ export default function Footer() {
                 className="p-2 sm:p-2.5 bg-white/5 backdrop-blur-md rounded-lg hover:bg-white/20 transition duration-300 flex items-center justify-center"
               >
                 <Icon className="w-5 h-5 text-white" />
-              </a>
+              </Link>
             ))}
             </div>
           </div>
@@ -59,12 +60,12 @@ export default function Footer() {
                   <ul className="space-y-2 sm:space-y-3">
                     {links.map((link) => (
                       <li key={link}>
-                        <a
+                        <Link
                           href={`/${link.toLowerCase()}`}
                           className="text-gray-400 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                         >
                           {link}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

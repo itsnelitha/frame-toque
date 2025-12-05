@@ -104,6 +104,10 @@ export default function ServicesMain() {
     <Navbar scrolled={scrolled} />
       <br/>
     <section className="py-16 sm:py-20 px-6 lg:px-8">
+             {/* Pulse */}
+      <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      
        {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
