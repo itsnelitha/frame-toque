@@ -91,24 +91,24 @@ export default function Footer() {
               © {new Date().getFullYear()} Frame Toque. All rights reserved.
             </p>
             <div className="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm">
-              <a
-                href="#"
+              <Link
+                href="/privacy"
                 className="text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/terms"
                 className="text-gray-400 hover:text-white transition-colors duration-200"
               >
-                Terms of Service
-              </a>
-              <a
-                href="#"
+                Terms & Conditions
+              </Link>
+              <Link
+                href="/cookies"
                 className="text-gray-400 hover:text-white transition-colors duration-200"
               >
                 Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>
