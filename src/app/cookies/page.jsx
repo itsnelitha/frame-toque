@@ -62,7 +62,7 @@ export default function Cookies() {
             <div>
               <h2 className="text-2xl font-semibold mb-2">6. Contact</h2>
               <p className="text-gray-300 leading-relaxed">
-                For questions about this Cookie Policy, please <Link href="/contact" className="text-green-400">contact us</Link>.
+                For questions about this Cookie Policy, please <Link href="/contact" className="text-green-400 font-semibold">contact us</Link>.
               </p>
             </div>
           </section>

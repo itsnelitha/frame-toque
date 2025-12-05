@@ -63,7 +63,7 @@ export default function Terms() {
         <div>
           <h2 className="text-2xl font-semibold mb-2">7. Contact</h2>
           <p className="text-gray-300 leading-relaxed">
-            For questions about these Terms, please <Link href="/contact" className="text-green-400">contact us</Link>.
+            For questions about these Terms, please <Link href="/contact" className="text-green-400 font-semibold">contact us</Link>.
           </p>
         </div>
       </section>
