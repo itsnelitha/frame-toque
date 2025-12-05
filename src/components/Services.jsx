@@ -1,88 +1,186 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Laptop, PenTool, Video } from "lucide-react";
+import { Check, Star } from "lucide-react";
 
-const features = [
+const pricingCategories = [
   {
-    title: "Web Development",
-    description:
-      "yoooooooooooooooooo.",
-    icon: Laptop,
-    imagePosition: "left",
+    category: "Web Development",
+    plans: [
+      {
+        name: "Basic",
+        price: "10",
+        description: "For personal videos",
+        features: ["Simple Caption Style", "Correct Alignment", "Background Music", "Basic Color Correction", <>2 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+      {
+        name: "Standard",
+        price: "15",
+        description: "For content creators",
+        features: ["Advanced Annimations", "Trendy Viral Caption Style", "Sound Effects", "Background Music", "Cinematic Color Grading", <>3 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: true,
+      },
+      {
+        name: "Premium",
+        price: "25",
+        description: "For production studios",
+        features: ["Advanced VFX Annimations", "Masking", "Separate Annimated B-Roll", "Cinematic Color Grading", "Trendy Animated Caption Style", <>5 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+    ],
   },
   {
-    title: "Graphics Designing",
-    description:
-      "yoooooooooooooooooo",
-    icon: PenTool,
-    imagePosition: "left",
+    category: "Graphics Designing",
+    plans: [
+      {
+        name: "Basic",
+        price: "10",
+        description: "For personal videos",
+        features: ["Simple Caption Style", "Correct Alignment", "Background Music", "Basic Color Correction", <>2 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+      {
+        name: "Standard",
+        price: "15",
+        description: "For content creators",
+        features: ["Advanced Annimations", "Trendy Viral Caption Style", "Sound Effects", "Background Music", "Cinematic Color Grading", <>3 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: true,
+      },
+      {
+        name: "Premium",
+        price: "25",
+        description: "For production studios",
+        features: ["Advanced VFX Annimations", "Masking", "Separate Annimated B-Roll", "Cinematic Color Grading", "Trendy Animated Caption Style", <>5 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+    ],
   },
   {
-    title: "Video Editing",
-    description:
-      "yoooooooooooooooooo",
-    icon: Video,
-    imagePosition: "left",
+    category: "Video Editing",
+    plans: [
+      {
+        name: "Basic",
+        price: "10",
+        description: "For personal videos",
+        features: ["Simple Caption Style", "Correct Alignment", "Background Music", "Basic Color Correction", <>2 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+      {
+        name: "Standard",
+        price: "15",
+        description: "For content creators",
+        features: ["Advanced Annimations", "Trendy Viral Caption Style", "Sound Effects", "Background Music", "Cinematic Color Grading", <>3 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: true,
+      },
+      {
+        name: "Premium",
+        price: "25",
+        description: "For production studios",
+        features: ["Advanced VFX Annimations", "Masking", "Separate Annimated B-Roll", "Cinematic Color Grading", "Trendy Animated Caption Style", <>5 Revisions <i>(Each Extra Revision: $0.65)</i></>],
+        mostPopular: false,
+      },
+    ],
   },
 ];
 
-export default function Features() {
+export default function Pricing() {
   return (
-    <section id="features" className="py-16 sm:py-20 px-6 sm:px-10 lg:px-16 relative">
+    <section className="py-16 sm:py-20 px-6 lg:px-8">
+       {/* Title */}
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
+          <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
+            Our&nbsp;
+          </span>
+          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
+            Services
+          </span>
+        </h2>
+        <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          From websites to videos, we make your brand look amazing everywhere.
+        </p>
+      </div>
 
-      {/* Pulse */}
-      <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="max-w-7xl mx-auto space-y-16">
+        {pricingCategories.map((category, idx) => (
+          <div key={idx}>
+            {/* Category Header */}
+            <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
+              {category.category}
+            </h2>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-          <h2 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
-              What We&nbsp;
-            </span>
-            <span className="bg-gradient-to-b from-green-400 to-green-400 bg-clip-text text-transparent">
-              Do
-            </span>
-          </h2>
-        </div>
+            {/* Plans Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6">
+              {category.plans.map((plan, key) => (
+                <div
+                  key={key}
+                  className={`relative bg-slate-900/50 backdrop-blur-sm border rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-all duration-300 overflow-visible group flex flex-col h-full ${
+                    plan.mostPopular
+                      ? "border-green-500 shadow-2xl shadow-green-500/20 lg:scale-105"
+                      : "border-slate-800 hover:border-slate-700"
+                  }`}
+                >
+                  {/* Gradient Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none rounded-lg" />
 
-        <div className="space-y-16 sm:space-y-20 lg:space-y-32">
-          {features.map((feature, key) => {
-            const Icon = feature.icon;
-            return (
+                  {/* Most Popular Badge */}
+                  {plan.mostPopular && (
+                    <div className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 z-10">
+                      <div className="flex items-center space-x-1 px-3 sm:px-4 py-1 sm:py-1.5 bg-gradient-to-b from-green-500 to-green-500 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
+                        <Star className="w-3 h-3 sm:w-3 sm:h-3 fill-white" />
+                        <span>Most Popular</span>
+                      </div>
+                    </div>
+                  )}
 
-              <div
-                key={key}
-                className={`flex flex-col lg:flex-row items-center gap-6 sm:gap-8 ${
-                  feature.imagePosition === "right" ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Icon / Image Card */}
-                <div className="flex-1 w-full flex justify-center lg:order-0 mb-6 lg:mb-0">
-                  <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-purple-500/20 rounded-xl sm:rounded-2xl transition-all duration-500" />
-                    <div className="relative bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-10 flex items-center justify-center group-hover:border-green-600/50 transition-all duration-300">
-                      <Icon className="w-16 h-16 sm:w-20 sm:h-20 text-green-400" />
+                  {/* Plan Header */}
+                  <div className="text-center mb-6 sm:mb-8">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{plan.name}</h3>
+                    <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">
+                      {plan.description}
+                    </p>
+                    <div className="flex items-baseline justify-center">
+                      <span className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-green-400 to-green-400 bg-clip-text text-transparent">
+                        ${plan.price}
+                      </span>
                     </div>
                   </div>
+
+                  {/* Features */}
+                  <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-row">
+                    {plan.features.map((feature, featureKey) => (
+                      <li key={featureKey} className="flex items-start space-x-2 sm:space-x-3">
+                        <div className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-green-500/20 flex items-center justify-center mt-0.5">
+                          <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-green-400" />
+                        </div>
+                        <span className="text-gray-300 text-sm sm:text-base">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Button */}
+                  <button
+                    className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${
+                      plan.mostPopular
+                        ? "bg-gradient-to-b from-green-500 to-green-500"
+                        : "bg-white/5 border border-white/10 hover:bg-white/10"
+                    }`}
+                  >
+                    Get Started
+                  </button>
                 </div>
+              ))}
+            </div>
+          </div>
+        ))}
 
-                {/* Text Section */}
-                <div className="flex-1 w-full">
-                  <div className="max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
-                    <h3 className="text-4xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-300 text-xl sm:text-lg leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-
-            );
-          })}
+        {/* Custom Plan */}
+        <div className="mt-8 sm:mt-12 text-center">
+          <p className="text-gray-400 text-base text-xl">
+            Need a custom plan? &nbsp;
+            <a href="/contact" className="text-green-400 hover:text-green-300">
+              Contact Us
+            </a>
+          </p>
         </div>
       </div>
     </section>

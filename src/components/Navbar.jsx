@@ -51,8 +51,8 @@ export default function Navbar({ scrolled }) {
               Contact Us
             </Link>        
             <Link
-              href="#"
-              className="bg-gradient-to-b from-green-600 to-green-400 text-white text-sm lg:text-base px-4 py-2 rounded-lg font-semibold hover:scale-102 transition-transform duration-300"
+              href="/services"
+              className="bg-gradient-to-b from-green-500 to-green-500 text-white text-sm lg:text-base px-4 py-2 rounded-lg font-semibold hover:scale-102 transition-transform duration-300"
             >
               Start Your Project
             </Link>

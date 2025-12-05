@@ -31,7 +31,7 @@ export default function AboutUs() {
       {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
-          <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
             About&nbsp;
           </span>
           <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
@@ -40,7 +40,7 @@ export default function AboutUs() {
         </h2>
 
         <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-          yooooooooooooooooooooooo
+          At Frame Toque, we believe in bringing creativity to life. From web design to video editing, we help businesses and creators look professional and unforgettable online. Your vision, our skill - a perfect match.
         </p>
       </div>
 

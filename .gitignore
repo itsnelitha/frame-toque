@@ -13,9 +13,6 @@
 # testing
 /coverage
 
-# next.js layout file
-/src/app/layout.js
-
 # next.js
 /.next/
 /out/
@@ -42,3 +39,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+src/app/layout.js

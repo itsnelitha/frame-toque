@@ -3,8 +3,15 @@ import Image from "next/image";
 
 const footerLinks = {
   Company: ["About", "Projects", "Contact"],
-  Legal: ["Privacy", "Terms", "Cookie Policy"],
+  Legal: ["Privacy", "Terms", "Cookies"],
 };
+const urls = [
+  "https://t.me/frametoque",
+  "https://github.com/frametoque",
+  "https://linkedin.com/in/company/frametoque",
+  "https://instagram.com/frametoque",
+  "mailto:frametoque@gmail.com"
+];
 
 export default function Footer() {
   return (
@@ -28,14 +35,16 @@ export default function Footer() {
             </p>
             <div className="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
               {[Send, Github, Linkedin, Instagram, Mail].map((Icon, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="p-2 sm:p-2.5 bg-white/5 backdrop-blur-md rounded-lg hover:bg-white/20 transition duration-300 flex items-center justify-center"
-                >
-                  <Icon className="w-5 h-5 text-white" />
-                </a>
-              ))}
+              <a
+                key={idx}
+                href={urls[idx]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 sm:p-2.5 bg-white/5 backdrop-blur-md rounded-lg hover:bg-white/20 transition duration-300 flex items-center justify-center"
+              >
+                <Icon className="w-5 h-5 text-white" />
+              </a>
+            ))}
             </div>
           </div>
 
@@ -51,7 +60,7 @@ export default function Footer() {
                     {links.map((link) => (
                       <li key={link}>
                         <a
-                          href="#"
+                          href={`/${link.toLowerCase()}`}
                           className="text-gray-400 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                         >
                           {link}
@@ -67,7 +76,7 @@ export default function Footer() {
                   Reg No:
                 </h3>
                 <p className="text-gray-300 text-xs sm:text-sm max-w-xs">
-                  yoooooooooooooooooo <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-[#44ed15] to-green-400 font-semibold">Do it Faster & Better With Us.</span>
+                  We craft websites, graphics, and videos that help your brand stand out. <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-[#44ed15] to-green-400 font-semibold">Do it Faster & Better With Us.</span>
                 </p>
               </div>
             </div>

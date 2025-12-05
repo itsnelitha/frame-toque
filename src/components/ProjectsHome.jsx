@@ -58,50 +58,82 @@ export default function ProjectsHome() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col group"
+            className="
+              group relative rounded-2xl overflow-hidden 
+              bg-slate-800/40 backdrop-blur-md 
+              border border-white/10 
+              shadow-lg shadow-black/30 
+              hover:shadow-green-500/20 
+              hover:border-green-400/40 
+              transition-all duration-300 flex flex-col
+            "
           >
-            {/* Image Container */}
-            <div className="relative w-full aspect-square overflow-hidden">
-              {/* Category label inside image */}
-              <span className="absolute top-2 right-2 z-10 bg-green-400 uppercase text-black text-xs px-3 py-1 rounded-md">
-                {project.category}
-              </span>
+            {/* Category */}
+            <span className="
+              absolute top-3 right-3 text-xs 
+              px-3 py-1 rounded-md z-20 
+              bg-green-400 uppercase text-black backdrop-blur-md 
+              shadow-md shadow-black/30
+            ">
+              {project.category}
+            </span>
 
+            {/* Image */}
+            <div className="w-full aspect-square overflow-hidden">
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                className="
+                  w-full h-full object-cover 
+                  transition-transform duration-500 
+                  group-hover:scale-110
+                "
               />
             </div>
 
-            {/* Content */}
-            <div className="p-4 flex flex-col gap-3 flex-1">
-              <h3 className="text-lg font-bold">{project.title}</h3>
-              <p className="text-gray-400 text-sm">{project.description}</p>
+            {/* Info */}
+            <div className="p-5 flex flex-col gap-3 flex-1">
+              <h3 className="text-xl font-semibold">{project.title}</h3>
+
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {project.description}
+              </p>
 
               {/* Buttons */}
-              <div className="flex gap-2 mt-auto flex-wrap">
+              <div className="flex gap-3 mt-auto flex-wrap">
+
                 {project.type === "web" && (
                   <>
                     <a
                       href={project.github}
                       target="_blank"
-                      className="px-3 py-1 bg-slate-700 hover:bg-slate-600 transition rounded flex items-center gap-1"
+                      className="
+                        bg-slate-700/50 hover:bg-slate-700 
+                        px-3 py-2 rounded-lg transition 
+                        flex items-center justify-center
+                        border border-white/10 hover:border-white/20
+                      "
                     >
-                      <Github className="w-4 h-4 text-white" />
+                      <Github className="w-5 h-5" />
                     </a>
 
                     {project.live && (
                       <a
                         href={project.live}
                         target="_blank"
-                        className="px-3 py-1 bg-green-500 hover:bg-green-600 transition rounded flex items-center gap-1"
+                        className="
+                          bg-green-500/20 hover:bg-green-500/30 
+                          px-3 py-2 rounded-lg transition 
+                          flex items-center justify-center
+                          border border-green-400/20 hover:border-green-400/40
+                        "
                       >
-                        <Globe className="w-4 h-4 text-white" />
+                        <Globe className="w-5 h-5" />
                       </a>
                     )}
                   </>
@@ -111,24 +143,35 @@ export default function ProjectsHome() {
                   <a
                     href={project.youtube}
                     target="_blank"
-                    className="px-3 py-1 bg-red-500 hover:bg-red-600 transition rounded flex items-center gap-1"
+                    className="
+                      bg-red-500/20 hover:bg-red-500/30 
+                      px-3 py-2 rounded-lg transition 
+                      flex items-center justify-center
+                      border border-red-500/20 hover:border-red-500/40
+                    "
                   >
-                    <Youtube className="w-4 h-4 text-white" />
+                    <Youtube className="w-5 h-5" />
                   </a>
                 )}
 
                 {project.type === "graphic" && (
                   <button
                     onClick={() => setPopupImage(project.image)}
-                    className="px-3 py-1 bg-purple-500 hover:bg-purple-600 transition rounded flex items-center gap-1"
+                    className="
+                      bg-purple-500/20 hover:bg-purple-500/30 
+                      px-3 py-2 rounded-lg transition 
+                      flex items-center justify-center
+                      border border-purple-500/20 hover:border-purple-500/40
+                    "
                   >
-                    <Eye className="w-4 h-4 text-white" />
+                    <Eye className="w-5 h-5" />
                   </button>
                 )}
               </div>
             </div>
           </div>
         ))}
+      </div>
       </div>
 
       {/* View More Button */}

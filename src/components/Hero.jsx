@@ -58,14 +58,14 @@ export default function Hero() {
               </span>
             </h1>
             <p className="text-md sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 animate-in slide-in-from-bottom duration-700 delay-200 leading-relaxed">
-              bla bla blaaabla bla blaaabla bla blaaabla bla blaaabla bla blaaabla bla blaaabla bla blaaa
+              We create websites, graphics, and videos that make your brand shine. Simple, fast, and crafted to grab attention.
             </p>
            
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 animate-in slide-in-from-bottom duration-700 delay-300">
 
                 <Link
-                  href="#"
-                  className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-green-600 to-green-400 text-white rounded-lg font-semibold text-sm sm:text-base hover:scale-102 transition-transform duration-300 flex items-center justify-center"
+                  href="/services"
+                  className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-green-500 to-green-500 text-white rounded-lg font-semibold text-sm sm:text-base hover:scale-102 transition-transform duration-300 flex items-center justify-center"
                 >
                  Start Your Project
                 </Link>

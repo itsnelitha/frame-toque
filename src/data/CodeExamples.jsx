@@ -243,7 +243,7 @@ export const floatingCards = {
     contentColor: "text-gray-200",
     icon: "💻",
     title: "Next-Level Websites",
-    content: "qwertyuiopuiopasdfghjklzxcvbnm",
+    content: "Modern, responsive websites that work perfectly on any device.",
   },
   "Graphics Designing": {
     bgColor: "bg-[#3c327b]/20",
@@ -252,7 +252,7 @@ export const floatingCards = {
     contentColor: "text-gray-200",
     icon: "🎨",
     title: "Creative Designs",
-    content: "qwertyuiopuiopasdfghjklzxcvbnm",
+    content: "Eye-catching designs that tell your story instantly.",
   },
   "Video Editing": {
     bgColor: "bg-[#3c327b]/20",
@@ -261,6 +261,6 @@ export const floatingCards = {
     contentColor: "text-gray-200",
     icon: "🎬",
     title: "Pro Videos",
-    content: "qwertyuiopuiopasdfghjklzxcvbnm",
+    content: "Smooth, professional videos that engage and convert.",
   },
 };

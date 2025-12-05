@@ -1,27 +1,27 @@
 const testimonials = [
   {
-    name: "qwert",
-    role: "143456",
+    name: "ABCD",
+    role: "ABC at ABC",
     image:
-      "/images/testimonials/user.jpg",
+      "/images/testimonials/user.png",
     content:
-      "qwerty.",
+      "Frame Toque transformed our website! It’s fast, sleek, and exactly what our brand needed..",
   },
   {
-    name: "qwerty",
-    role: "25",
+    name: "ABCD",
+    role: "ABC at ABC",
     image:
-      "/images/testimonials/user.jpg",
+      "/images/testimonials/user.png",
     content:
-      "123456",
+      "Their video editing and graphics made our campaign pop. Highly recommend!",
   },
   {
-    name: "qwerty",
-    role: "123456",
+    name: "ABCD",
+    role: "ABC at ABC",
     image:
-      "/images/testimonials/user.jpg",
+      "/images/testimonials/user.png",
     content:
-      "qwerty",
+      "From start to finish, the team made everything simple and stress-free. Loved it!",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Testimonials() {
               What Clients are saying about us
             </h2>
           <p className="text-gray-400 text-base text-xl sm:text-lg max-w-2xl mx-auto">
-           bla bla blaaa bla bla blaaa bla bla blaaa bla bla blaaa  bla bla blaaabla bla blaaabla bla blaaabla bla blaaa
+           Our clients love what we do! See how we’ve helped businesses and creators grow with stunning designs, smooth websites, and eye-catching videos. Real feedback from real people - because your success is our goal.
           </p>
           </div>
 
@@ -56,7 +56,7 @@ export default function Testimonials() {
                     <div className="flex-shrink-0">
                       <div
                         className="text-2xl sm:text-3xl lg:text-4xl font-bold 
-                      bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text 
+                      bg-gradient-to-r from-green-400 to-green-400 bg-clip-text 
                       text-transparent"
                       >
                         "

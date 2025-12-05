@@ -33,16 +33,16 @@ export default function ContactPage() {
         {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
-          <span className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
             Contact&nbsp;
           </span>
-          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
             Us
           </span>
         </h2>
 
         <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-          yooooooooooooooooooooooo
+          Get in touch with Frame Toque today and watch your brand grow.
         </p>
       </div>
 
