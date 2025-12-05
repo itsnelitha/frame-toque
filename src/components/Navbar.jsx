@@ -83,7 +83,7 @@ export default function Navbar({ scrolled }) {
       {mobileMenuIsOpen && (
         <div className="md:hidden bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 animate-in slide-in-from-top duration-300">
           <div className="px-4 py-4 sm:py-6 space-y-3 sm:space-y-4">
-            {["services", "projects", "testimonials", "contact"].map((link) => (
+            {["about", "projects", "services", "contact"].map((link) => (
               <Link
                 key={link}
                 href={`${link}`}
