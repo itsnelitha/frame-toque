@@ -9,9 +9,9 @@ import Projects from "@/components/Projects.jsx";
 export default function ProjectsOut() {
   return (
     <>
-    <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
+    <main  className="min-h-screen bg-slate-950 text-white overflow-hidden">
       <Projects />
-    </div>
+    </main >
     </>
   );
 }

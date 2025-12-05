@@ -11,7 +11,7 @@ import Footer from "@/components/Footer.jsx";
 export default function Cookies() {
   return (
     <>
-      <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
+      <main  className="min-h-screen bg-slate-950 text-white overflow-hidden">
         <Navbar />
         <br></br>
         <div className="min-h-screen bg-slate-950 text-white px-6 sm:px-10 lg:px-16 py-16">
@@ -68,7 +68,7 @@ export default function Cookies() {
           </section>
         </div>
         <Footer />
-      </div>
+      </main >
     </>
   );
 }
