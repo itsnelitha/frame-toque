@@ -33,7 +33,6 @@ export default function Testimonials() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-start gap-8 sm:gap-12 lg:gap-16">
-          {/* Left side - Header */}
           <div className="lg:w-1/2 w-full text-center lg:text-left">
             <h2 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
               What Clients are saying about us
@@ -42,9 +41,7 @@ export default function Testimonials() {
            Our clients love what we do! See how we’ve helped businesses and creators grow with stunning designs, smooth websites, and eye-catching videos. Real feedback from real people - because your success is our goal.
           </p>
           </div>
-
-          {/* Right side - testimonials */}
-
+          
           <div className="lg:w-1/2 w-full">
             <div className="space-y-6 sm:space-y-8">
               {testimonials.map((testimonial, key) => (

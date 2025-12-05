@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 
 import Navbar from "@/components/Navbar.jsx";
-import Projects from "@/components/Projects.jsx";
 import Footer from "@/components/Footer.jsx";
 import { Github, Globe, Youtube, Eye } from "lucide-react";
 
@@ -27,7 +26,7 @@ export default function ProjectsMain() {
       description: "yoooooooooooooooooo",
       type: "web",
       category: "Web Dev",
-      image: "/projects/smurf.webp",
+      image: "/projects/web/sample.webp",
       github: "#",
       live: "#",
     },
@@ -36,14 +35,14 @@ export default function ProjectsMain() {
       description: "yoooooooooooooooooo",
       type: "graphic",
       category: "Graphics",
-      image: "/projects/smurf.webp",
+      image: "/projects/graphics/sample.webp",
     },
     {
       title: "Promo Video",
       description: "yoooooooooooooooooo",
       type: "video",
       category: "Video",
-      image: "/projects/smurf.webp",
+      image: "/projects/videos/sample.webp",
       youtube: "#",
     },
     {
@@ -51,7 +50,7 @@ export default function ProjectsMain() {
       description: "yoooooooooooooooooo",
       type: "web",
       category: "Web Dev",
-      image: "/projects/smurf.webp",
+      image: "/projects/web/sample.webp",
       github: "#",
       live: "#",
     },
@@ -65,8 +64,7 @@ export default function ProjectsMain() {
              {/* Pulse */}
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      
-      {/* Title */}
+    
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
           <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
@@ -82,7 +80,6 @@ export default function ProjectsMain() {
         </p>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {projects.map((project, index) => (
           <div
@@ -97,7 +94,6 @@ export default function ProjectsMain() {
               transition-all duration-300 flex flex-col
             "
           >
-            {/* Category */}
             <span className="
               absolute top-3 right-3 text-xs 
               px-3 py-1 rounded-md z-20 
@@ -107,7 +103,6 @@ export default function ProjectsMain() {
               {project.category}
             </span>
 
-            {/* Image */}
             <div className="w-full aspect-square overflow-hidden">
               <img
                 src={project.image}
@@ -120,7 +115,6 @@ export default function ProjectsMain() {
               />
             </div>
 
-            {/* Info */}
             <div className="p-5 flex flex-col gap-3 flex-1">
               <h3 className="text-xl font-semibold">{project.title}</h3>
 
@@ -128,7 +122,6 @@ export default function ProjectsMain() {
                 {project.description}
               </p>
 
-              {/* Buttons */}
               <div className="flex gap-3 mt-auto flex-wrap">
 
                 {project.type === "web" && (
@@ -197,7 +190,6 @@ export default function ProjectsMain() {
         ))}
       </div>
 
-      {/* Popup */}
       {popupImage && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 cursor-pointer backdrop-blur-sm"

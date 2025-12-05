@@ -57,7 +57,6 @@ export default function Features() {
                   feature.imagePosition === "right" ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Icon / Image Card */}
                 <div className="flex-1 w-full flex justify-center lg:order-0 mb-6 lg:mb-0">
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-purple-500/20 rounded-xl sm:rounded-2xl transition-all duration-500" />
@@ -67,7 +66,6 @@ export default function Features() {
                   </div>
                 </div>
 
-                {/* Text Section */}
                 <div className="flex-1 w-full">
                   <div className="max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
                     <h3 className="text-4xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white">

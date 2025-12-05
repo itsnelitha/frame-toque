@@ -20,34 +20,33 @@ export default function AboutUs() {
     {
       name: "Kavinu Pasandul",
       role: "Video Editor",
-      image: "/projects/smurf.webp",
+      image: "/images/team/sample.webp",
     },
         {
       name: "Tharul Bandara",
       role: "Graphic Designer",
-      image: "/projects/smurf.webp",
+      image: "/images/team/sample.webp",
     },
     {
       name: "Nelitha Priyawansha",
       role: "Developer",
-      image: "/projects/smurf.webp",
+      image: "/images/team/sample.webp",
     },
     {
       name: "Sadaka",
       role: "Developer",
-      image: "/projects/smurf.webp",
+      image: "/images/team/sample.webp",
     }
   ];
 
 
   const partners = [
-  { name: "Partner", logo: "/images/logo.png" },
-  { name: "Partner", logo: "/images/logo.png" },
-  { name: "Partner", logo: "/images/logo.png" },
-  { name: "Partner", logo: "/images/logo.png" },
-  { name: "Partner", logo: "/images/logo.png" },
-  { name: "Partner", logo: "/images/logo.png" },
-
+  { name: "Partner", logo: "/logos/ft/logo.png" },
+  { name: "Partner", logo: "/logos/ft/logo.png" },
+  { name: "Partner", logo: "/logos/ft/logo.png" },
+  { name: "Partner", logo: "/logos/ft/logo.png" },
+  { name: "Partner", logo: "/logos/ft/logo.png" },
+  { name: "Partner", logo: "/logos/ft/logo.png" },
 ];
 
   return (
@@ -55,11 +54,11 @@ export default function AboutUs() {
       <Navbar scrolled={scrolled} />
 <br/><br/>
     <section className="min-h-screen bg-slate-950 text-white py-16 px-6 sm:px-10 lg:px-16">
+
        {/* Pulse */}
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-      {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
           <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
@@ -75,7 +74,6 @@ export default function AboutUs() {
         </p>
       </div>
 
-      {/* Team Section */}
       <div className="max-w-7xl mx-auto">
 
         <h3 className="text-3xl sm:text-4xl font-semibold mb-10 text-center leading-tight">

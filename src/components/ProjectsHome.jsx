@@ -12,7 +12,7 @@ export default function ProjectsHome() {
       description: "yoooooooooooooooooo",
       type: "web",
       category: "Web Dev",
-      image: "/projects/smurf.webp",
+      image: "/projects/web/sample.webp",
       github: "#",
       live: "#",
     },
@@ -21,14 +21,14 @@ export default function ProjectsHome() {
       description: "yoooooooooooooooooo",
       type: "graphic",
       category: "Graphics",
-      image: "/projects/smurf.webp",
+      image: "/projects/graphics/sample.webp",
     },
     {
       title: "Promo Video",
       description: "yoooooooooooooooooo",
       type: "video",
       category: "Video",
-      image: "/projects/smurf.webp",
+      image: "/projects/videos/sample.webp",
       youtube: "#",
     },
     {
@@ -36,7 +36,7 @@ export default function ProjectsHome() {
       description: "yoooooooooooooooooo",
       type: "web",
       category: "Web Dev",
-      image: "/projects/smurf.webp",
+      image: "/projects/web/sample.webp",
       github: "#",
       live: "#",
     },
@@ -58,7 +58,6 @@ export default function ProjectsHome() {
         </p>
       </div>
 
-      {/* Grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {projects.map((project, index) => (
@@ -74,7 +73,6 @@ export default function ProjectsHome() {
               transition-all duration-300 flex flex-col
             "
           >
-            {/* Category */}
             <span className="
               absolute top-3 right-3 text-xs 
               px-3 py-1 rounded-md z-20 
@@ -83,8 +81,6 @@ export default function ProjectsHome() {
             ">
               {project.category}
             </span>
-
-            {/* Image */}
             <div className="w-full aspect-square overflow-hidden">
               <img
                 src={project.image}
@@ -96,16 +92,12 @@ export default function ProjectsHome() {
                 "
               />
             </div>
-
-            {/* Info */}
             <div className="p-5 flex flex-col gap-3 flex-1">
               <h3 className="text-xl font-semibold">{project.title}</h3>
 
               <p className="text-gray-400 text-sm leading-relaxed">
                 {project.description}
               </p>
-
-              {/* Buttons */}
               <div className="flex gap-3 mt-auto flex-wrap">
 
                 {project.type === "web" && (
@@ -175,7 +167,6 @@ export default function ProjectsHome() {
       </div>
       </div>
 
-      {/* View More Button */}
       <div className="text-center mt-12">
         <Link
           href="/projects"
@@ -185,7 +176,6 @@ export default function ProjectsHome() {
         </Link>
       </div>
 
-      {/* Popup */}
       {popupImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 cursor-pointer"

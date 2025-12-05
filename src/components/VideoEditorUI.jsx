@@ -8,11 +8,9 @@ export function VideoEditorUI() {
         <button className="px-2 py-1 bg-emerald-300 rounded">X</button>
       </div>
       <div className="flex flex-col gap-2">
-        {/* Video preview */}
         <div className="bg-white border border-emerald-300 rounded h-32 flex items-center justify-center">
           <span className="text-emerald-400">Video Preview</span>
         </div>
-        {/* Timeline */}
         <div className="bg-emerald-200 h-24 rounded p-2 flex flex-col gap-1">
           <div className="flex gap-1">
             <div className="bg-white w-16 h-4 rounded"></div>
@@ -21,7 +19,6 @@ export function VideoEditorUI() {
           </div>
           <span className="text-sm text-emerald-500">Timeline Tracks</span>
         </div>
-        {/* Controls */}
         <div className="flex justify-between mt-2">
           <button className="bg-emerald-400 text-white py-1 px-3 rounded">Play</button>
           <button className="bg-emerald-400 text-white py-1 px-3 rounded">Pause</button>

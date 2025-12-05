@@ -68,7 +68,7 @@ export function GraphicsDesignUI() {
 
     <div className="flex-1 bg-gray-800 border border-[#001E36]/50 rounded flex items-center justify-center overflow-hidden relative">
       <Image
-        src="/images/smurf.webp"
+        src="/projects/graphics/sample.webp"
         alt="Canvas Preview"
         width={1000} height={1000}
         className="object-contain h-full w-full"
@@ -114,7 +114,6 @@ export function VideoEditorUI() {
   return (
     <div className="bg-gray-900 rounded-xl p-6 w-[550px] shadow-2xl">
 
-      {/* Header */}
       <div className="flex justify-between mb-4">
         <div className="flex items-center gap-2">
           <Image 
@@ -130,10 +129,7 @@ export function VideoEditorUI() {
         </button>
       </div>
 
-      {/* Main Content */}
       <div className="flex gap-4">
-
-        {/* Left Tools */}
         <div className="flex flex-col gap-2 w-32 bg-[#00005b]/20 p-3 rounded flex-shrink-0">
           <button className="flex items-center gap-2 text-white text-xs hover:text-[#5a5aff]"><Sliders className="w-3 h-3"/> Effects</button>
           <button className="flex items-center gap-2 text-white text-xs hover:text-[#5a5aff]"><Film className="w-3 h-3"/> Media</button>
@@ -143,18 +139,13 @@ export function VideoEditorUI() {
           <button className="flex items-center gap-2 text-white text-xs hover:text-[#5a5aff]"><Undo className="w-3 h-3"/> Undo</button>
         </div>
 
-        {/* Video + Properties + Timeline */}
         <div className="flex-1 flex flex-col gap-3">
-
-          {/* Video + Properties */}
           <div className="flex gap-3">
-
-            {/* Video Box */}
             <div className="bg-gray-800 border border-[#00005b]/50 rounded overflow-hidden flex-shrink-0" style={{ width: '140px' }}>
               <div className="aspect-[9/16]">
                 <video
                   ref={videoRef}
-                  src="/videos/sample.mp4"
+                  src="/projects/videos/sample.mp4"
                   autoPlay
                   muted
                   loop
@@ -163,32 +154,22 @@ export function VideoEditorUI() {
                 />
               </div>
             </div>
-
-            {/* Properties + Timeline */}
             <div className="w-24 flex flex-col justify-between h-[240px]">
-
-              {/* Timeline */}
               <div className="flex flex-col gap-2">
                 <div className="bg-[#00005b]/20 rounded p-2 flex flex-col gap-1 w-50">
                 <span className="text-white text-xs font-semibold">Timeline</span>
-
-                {/* Progress Bar */}
                 <div className="w-full bg-gray-700 h-3 rounded overflow-hidden">
                   <div
                     className="bg-gray-800 h-3 rounded"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-
-                {/* Time Labels */}
                 <div className="flex justify-between text-xs text-white">
                   <span>00:00</span>
                   <span>-00:{videoRef.current ? String(Math.floor(videoRef.current.duration - videoRef.current.currentTime)).padStart(2, '0') : '01'}</span>
                 </div>
               </div>
 
-
-                {/* Buttons */}
                 <div className="flex w-full gap-2">
                   <button
                     className="flex items-center gap-1 bg-[#00005b] text-white py-3 px-3 rounded hover:bg-[#00003a] transition-colors text-xs"
@@ -218,7 +199,6 @@ export function VideoEditorUI() {
 
               </div>
 
-              {/* Properties Section */}
               <div className="flex flex-col gap-2">
                 <span className="text-white text-xs font-semibold">Properties</span>
                 <div className="bg-gray-800 p-1 rounded text-white text-xs">Clip Info</div>

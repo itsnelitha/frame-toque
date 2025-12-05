@@ -26,7 +26,6 @@ export default function Navbar({ scrolled }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16 md:h-20">
-          {/* Logo */}
           <Link href="/">
           <div className="flex items-center space-x-1 group cursor-pointer">
             <div>
@@ -40,7 +39,6 @@ export default function Navbar({ scrolled }) {
             </div>
           </div>
           </Link>
-          {/* Nav Links (desktop) */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8 active">
             {links.map((link) => {
         const isActive = pathname === link.href;

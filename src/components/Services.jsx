@@ -108,7 +108,6 @@ export default function ServicesMain() {
       <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[#44ed15]-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
-       {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
         <h2 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
           <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
@@ -126,12 +125,10 @@ export default function ServicesMain() {
       <div className="max-w-7xl mx-auto space-y-16">
         {pricingCategories.map((category, idx) => (
           <div key={idx}>
-            {/* Category Header */}
             <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
               {category.category}
             </h2>
 
-            {/* Plans Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6">
               {category.plans.map((plan, key) => (
                 <div
@@ -142,10 +139,8 @@ export default function ServicesMain() {
                       : "border-slate-800 hover:border-slate-700"
                   }`}
                 >
-                  {/* Gradient Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none rounded-lg" />
 
-                  {/* Most Popular Badge */}
                   {plan.mostPopular && (
                     <div className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 z-10">
                       <div className="flex items-center space-x-1 px-3 sm:px-4 py-1 sm:py-1.5 bg-gradient-to-b from-green-500 to-green-500 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
@@ -155,7 +150,6 @@ export default function ServicesMain() {
                     </div>
                   )}
 
-                  {/* Plan Header */}
                   <div className="text-center mb-6 sm:mb-8">
                     <h3 className="text-xl sm:text-2xl font-bold mb-2">{plan.name}</h3>
                     <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">
@@ -168,7 +162,6 @@ export default function ServicesMain() {
                     </div>
                   </div>
 
-                  {/* Features */}
                   <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-row">
                     {plan.features.map((feature, featureKey) => (
                       <li key={featureKey} className="flex items-start space-x-2 sm:space-x-3">
@@ -180,7 +173,6 @@ export default function ServicesMain() {
                     ))}
                   </ul>
 
-                  {/* Button */}
                   <button
                     className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${
                       plan.mostPopular
@@ -196,7 +188,6 @@ export default function ServicesMain() {
           </div>
         ))}
 
-        {/* Custom Plan */}
         <div className="mt-8 sm:mt-12 text-center">
           <p className="text-gray-400 text-base text-xl">
             Need a custom plan? &nbsp;
