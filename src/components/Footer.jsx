@@ -1,4 +1,5 @@
 import { Github, Send, Linkedin, Mail, Instagram } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   Company: ["About", "Projects", "Contact"],
@@ -13,10 +14,13 @@ export default function Footer() {
           {/* Logo + Social */}
           <div className="col-span-1 sm:col-span-4 lg:col-span-2 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start space-x-2 mb-3 sm:mb-4">
-              <img
+           
+              <Image
                 src="/images/name-logo.png"
-                alt="Frame Toque Logo"
-                className="w-45 h-10 sm:w-45 sm:h-10"
+                alt="Frame Toque"
+                width={200}
+                height={40}   
+                className="w-32 h-auto sm:w-48"
               />
             </div>
             <p className="text-gray-400 mb-4 sm:mb-6 max-w-xs mx-auto sm:mx-0 text-sm sm:text-base">

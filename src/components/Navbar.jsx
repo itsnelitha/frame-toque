@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar({ scrolled }) {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
@@ -20,7 +21,13 @@ export default function Navbar({ scrolled }) {
           <Link href="/">
           <div className="flex items-center space-x-1 group cursor-pointer">
             <div>
-             <img src="/images/name-logo.png" alt="Frame Toque" className="w-45 h-10 sm:w-45 sm:h-10"/>
+             <Image
+                src="/images/name-logo.png"
+                alt="Frame Toque"
+                width={200}     
+                height={40}
+                className="w-32 h-auto sm:w-48"
+              />
             </div>
           </div>
           </Link>

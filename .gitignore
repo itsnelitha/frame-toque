@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# next.js layout file
+/src/app/layout.js
+
 # next.js
 /.next/
 /out/

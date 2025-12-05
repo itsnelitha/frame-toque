@@ -8,6 +8,7 @@ import Hero from "../components/Hero.jsx";
 import Services from "../components/Services.jsx";
 import Testimonials from "../components/Testimonials.jsx";
 import ProjectsHome from "../components/ProjectsHome.jsx";
+import SoftwareWeUse from "../components/SoftwareWeUse.jsx";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,6 +28,7 @@ export default function Home() {
       <Navbar scrolled={scrolled} />
       <Hero />
       <Services />
+      <SoftwareWeUse />
       <ProjectsHome />
       <Testimonials />
       <Footer />
