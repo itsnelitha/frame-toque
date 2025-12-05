@@ -191,7 +191,7 @@ export default function ServicesMain() {
         <div className="mt-8 sm:mt-12 text-center">
           <p className="text-gray-400 text-base text-xl">
             Need a custom plan? &nbsp;
-            <a href="/contact" className="text-green-400 hover:text-green-300 font-semibold">
+            <a href="/contact" className="text-green-600 hover:text-green-500 font-semibold">
               Contact Us
             </a>
           </p>
