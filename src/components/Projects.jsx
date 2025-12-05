@@ -1,7 +1,24 @@
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
+
+import Navbar from "@/components/Navbar.jsx";
+import Projects from "@/components/Projects.jsx";
+import Footer from "@/components/Footer.jsx";
 import { Github, Globe, Youtube, Eye } from "lucide-react";
 
-export default function Projects() {
+export default function ProjectsMain() {
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 50);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
   const [popupImage, setPopupImage] = useState(null);
 
   const projects = [
@@ -41,6 +58,9 @@ export default function Projects() {
   ];
 
   return (
+    <>
+    <Navbar scrolled={scrolled} />
+      <br/>
     <section className="min-h-screen bg-slate-950 text-white py-20 px-6 sm:px-10 lg:px-16">
       
       {/* Title */}
@@ -188,5 +208,7 @@ export default function Projects() {
         </div>
       )}
     </section>
+     <Footer />
+    </>
   );
 }

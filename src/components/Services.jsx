@@ -1,4 +1,8 @@
 "use client";
+import { useEffect, useState } from "react";
+
+import Navbar from "@/components/Navbar.jsx";
+import Footer from "@/components/Footer.jsx";
 import { Check, Star } from "lucide-react";
 
 const pricingCategories = [
@@ -82,8 +86,23 @@ const pricingCategories = [
   },
 ];
 
-export default function Pricing() {
+export default function ServicesMain() {
+
+    const [scrolled, setScrolled] = useState(false);
+  
+    useEffect(() => {
+      function handleScroll() {
+        setScrolled(window.scrollY > 50);
+      }
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
   return (
+    <>
+    <Navbar scrolled={scrolled} />
+      <br/>
     <section className="py-16 sm:py-20 px-6 lg:px-8">
        {/* Title */}
       <div className="max-w-7xl mx-auto text-center mb-16">
@@ -184,5 +203,7 @@ export default function Pricing() {
         </div>
       </div>
     </section>
+      <Footer />
+        </>
   );
 }

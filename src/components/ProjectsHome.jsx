@@ -1,5 +1,6 @@
+"use client"; 
+import { useEffect, useState } from "react";
 import { Github, Globe, Youtube, Eye } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
 
 export default function ProjectsHome() {
