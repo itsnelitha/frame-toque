@@ -8,6 +8,7 @@ import SoftwareWeUse from "@/components/SoftwareWeUse.jsx";
 import ProjectsHome from "@/components/ProjectsHome.jsx";
 import Testimonials from "@/components/Testimonials.jsx";
 import WhyChooseUs from "@/components/WhyChooseUs.jsx";
+import Clients from "@/components/Clients.jsx";
 import Footer from "@/components/Footer.jsx";
 
 export default function HomeClient() {
@@ -29,6 +30,8 @@ export default function HomeClient() {
       <SoftwareWeUse />
       <ProjectsHome />
       <Testimonials />
+      <Clients />
+      <br/><br/><br/>
       <WhyChooseUs />
       <Footer />
     </div>

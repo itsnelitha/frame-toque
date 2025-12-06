@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import WhyChooseUs from "@/components/WhyChooseUs.jsx";
+import Clients from "@/components/Clients.jsx";
 import Navbar from "@/components/Navbar.jsx";
 import Footer from "@/components/Footer.jsx";
 
@@ -38,16 +39,6 @@ export default function AboutUs() {
       image: "/images/team/sample.webp",
     }
   ];
-
-
-  const partners = [
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-  { name: "Partner", logo: "/logos/ft/logo.png" },
-];
 
   return (
     <>
@@ -104,34 +95,10 @@ export default function AboutUs() {
           ))}
         </div>
       </div>
-      <br /><br />
-      <section className="py-5 bg-slate-950 text-white">
-      <div className="max-w-7xl mx-auto">
-       <h3 className="text-3xl sm:text-4xl font-semibold mb-10 text-center leading-tight">
-          <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
-            Our&nbsp;
-          </span>
-          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
-            Partners
-          </span>
-        </h3>
-        
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex justify-center items-center p-4 bg-slate-800 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="h-12 object-contain"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+
+      <div className="pt-24" />
+      <Clients />
+      <div className="pb-16" />
 
     </section>
     <WhyChooseUs />
