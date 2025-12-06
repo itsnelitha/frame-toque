@@ -2,6 +2,21 @@ export const metadata = {
   title: "Cookie Policy | Frame Toque",
   description:
     "Read the cookie policy for Frame Toque, explaining how we use cookies and similar technologies on our website.",
+    openGraph: {
+    title: "Cookie Policy | Frame Toque",
+    description: "Read the cookie policy for Frame Toque, explaining how we use cookies and similar technologies on our website.",
+    url: "https://frame-toque.vercel.app/cookies", 
+    siteName: "Frame Toque",
+    images: [
+      {
+        url: "https://frame-toque.vercel.app/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Frame Toque",
+      },
+    ],
+    type: "website",
+  },
 };
 
 import Navbar from "@/components/Navbar";

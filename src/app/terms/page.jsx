@@ -2,6 +2,21 @@ export const metadata = {
   title: "Terms & Conditions | Frame Toque",
   description:
     "Read the terms and conditions for using Frame Toque's web development, graphic designing, and video editing services.",
+    openGraph: {
+    title: "Terms & Conditions | Frame Toque",
+    description: "Read the terms and conditions for using Frame Toque's web development, graphic designing, and video editing services.",
+    url: "https://frame-toque.vercel.app/terms", 
+    siteName: "Frame Toque",
+    images: [
+      {
+        url: "https://frame-toque.vercel.app/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Frame Toque",
+      },
+    ],
+    type: "website",
+  },
 };
 
 import Navbar from "@/components/Navbar";

@@ -2,6 +2,21 @@ export const metadata = {
   title: "Privacy Policy | Frame Toque",
   description:
     "Read the privacy policy for Frame Toque, detailing how we collect and handle user data when submitting projects or using our services.",
+    openGraph: {
+    title: "Privacy Policy | Frame Toque",
+    description: "Read the privacy policy for Frame Toque, detailing how we collect and handle user data when submitting projects or using our services.",
+    url: "https://frame-toque.vercel.app/privacy", 
+    siteName: "Frame Toque",
+    images: [
+      {
+        url: "https://frame-toque.vercel.app/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Frame Toque",
+      },
+    ],
+    type: "website",
+  },
 };
 
 import Navbar from "@/components/Navbar";
