@@ -23,7 +23,7 @@ export default function HomeClient() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-slate-950 text-white overflow-hidden">
+    <main className="min-h-screen bg-slate-950 text-white overflow-hidden">
       <Navbar scrolled={scrolled} />
       <Hero />
       <ServicesHome />
@@ -33,6 +33,6 @@ export default function HomeClient() {
       <Clients />
       <WhyChooseUs />
       <Footer />
-    </section>
+    </main>
   );
 }
