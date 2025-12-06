@@ -41,7 +41,7 @@ export default function ContactPage() {
           </h2>
 
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-            Hit us up anytime — we’re always down to build something iconic with you.
+            Hit us up anytime - we are always down to build something iconic with you.
           </p>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
             <div>
               <h4 className="font-semibold text-lg">How fast do you reply?</h4>
-              <p className="text-gray-400">Usually within a few hours unless we’re deep in a project.</p>
+              <p className="text-gray-400">Usually within a few hours unless we are deep in a project.</p>
             </div>
 
             <div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
 
             <div>
               <h4 className="font-semibold text-lg">Do you take urgent projects?</h4>
-              <p className="text-gray-400">Yep — just DM us or WhatsApp us with your deadline.</p>
+              <p className="text-gray-400">Yep - just DM us or WhatsApp us with your deadline.</p>
             </div>
 
             <div>

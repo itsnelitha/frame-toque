@@ -6,28 +6,80 @@ import { useEffect, useRef } from "react";
 export default function SoftwareWeUse() {
   const sliderRef = useRef(null);
 
-useEffect(() => {
-  const slider = sliderRef.current;
-  if (!slider) return;
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-  let speed = 0.8;
-  let animation;
+    let speed = 0.8;
+    let animation;
 
-  const autoScroll = () => {
-    slider.scrollLeft += speed;
+    const autoScroll = () => {
+      slider.scrollLeft += speed;
 
-    if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
-      slider.scrollLeft = 0;
-    }
+      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+        slider.scrollLeft = 0;
+      }
+
+      animation = requestAnimationFrame(autoScroll);
+    };
 
     animation = requestAnimationFrame(autoScroll);
-  };
 
-  animation = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animation);
+  }, []);
 
-  return () => cancelAnimationFrame(animation);
-}, []);
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
 
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    const startDrag = (e) => {
+      isDown = true;
+      slider.classList.add("cursor-grabbing");
+      slider.classList.remove("cursor-grab");
+
+      startX = (e.pageX || e.touches[0].pageX) - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+
+    const stopDrag = () => {
+      isDown = false;
+      slider.classList.add("cursor-grab");
+      slider.classList.remove("cursor-grabbing");
+    };
+
+    const moveDrag = (e) => {
+      if (!isDown) return;
+
+      e.preventDefault();
+      const x = (e.pageX || e.touches[0].pageX) - slider.offsetLeft;
+      const walk = (x - startX) * 1.2; 
+      slider.scrollLeft = scrollLeft - walk;
+    };
+
+    slider.addEventListener("mousedown", startDrag);
+    slider.addEventListener("mouseleave", stopDrag);
+    slider.addEventListener("mouseup", stopDrag);
+    slider.addEventListener("mousemove", moveDrag);
+
+    slider.addEventListener("touchstart", startDrag);
+    slider.addEventListener("touchend", stopDrag);
+    slider.addEventListener("touchmove", moveDrag);
+
+    return () => {
+      slider.removeEventListener("mousedown", startDrag);
+      slider.removeEventListener("mouseleave", stopDrag);
+      slider.removeEventListener("mouseup", stopDrag);
+      slider.removeEventListener("mousemove", moveDrag);
+
+      slider.removeEventListener("touchstart", startDrag);
+      slider.removeEventListener("touchend", stopDrag);
+      slider.removeEventListener("touchmove", moveDrag);
+    };
+  }, []);
 
   const tools = [
     { name: "Adobe Photoshop", img: "/logos/ps-logo.png" },
@@ -45,7 +97,7 @@ useEffect(() => {
     <section className="py-20 bg-slate-950 relative">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl sm:text-5xl font-bold mb-3">
-        <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
             Software&nbsp;
           </span>
           <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
@@ -58,34 +110,31 @@ useEffect(() => {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6">
-
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-24 
-                        bg-gradient-to-r from-slate-950 to-transparent z-20">
-        </div>
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-24 
-                        bg-gradient-to-l from-slate-950 to-transparent z-20">
-        </div>
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-slate-950 to-transparent z-20"></div>
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-slate-950 to-transparent z-20"></div>
 
         <div
           ref={sliderRef}
           className="
             flex gap-8 py-4 
-            overflow-hidden     /* <— removes scrollbar AND overflow */
-            select-none
+            overflow-hidden 
+            select-none 
+            cursor-grab
           "
         >
           {tools.concat(tools).map((tool, i) => (
             <div
               key={i}
               className="
-                min-w-[200px] 
-                shrink-0 
-                bg-slate-900/70 
-                border border-slate-800 
-                rounded-2xl 
-                px-8 py-6 
-                flex flex-col items-center 
-                hover:bg-slate-900 transition
+                min-w-[200px]
+                shrink-0
+                bg-slate-900/70
+                border border-slate-800
+                rounded-2xl
+                px-8 py-6
+                flex flex-col items-center
+                hover:bg-slate-900
+                transition
               "
             >
               <Image
@@ -95,7 +144,9 @@ useEffect(() => {
                 alt={tool.name}
                 className="object-contain"
               />
-              <p className="mt-3 text-lg font-medium text-white">{tool.name}</p>
+              <p className="mt-3 text-lg font-medium text-white">
+                {tool.name}
+              </p>
             </div>
           ))}
         </div>

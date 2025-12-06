@@ -31,7 +31,6 @@ export default function HomeClient() {
       <ProjectsHome />
       <Testimonials />
       <Clients />
-      <br/><br/><br/>
       <WhyChooseUs />
       <Footer />
     </div>
