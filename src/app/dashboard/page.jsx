@@ -1,11 +1,10 @@
 export const metadata = {
   title: "Dashboard | Frame Toque",
-  description:
-    "Access your Frame Toque client dashboard to manage your projects, browse services, and track your orders. Your one-stop solution for web development, graphics, and video editing.",
+  description: "We craft fast websites, bold graphics, and pro videos that make your brand shine.",
   openGraph: {
     title: "Dashboard | Frame Toque",
-    description: "Access your Frame Toque client dashboard to manage your projects, browse services, and track your orders.",
-    url: "https://frame-toque.vercel.app/dashboard",
+    description: "We craft fast websites, bold graphics, and pro videos that make your brand shine.",
+    url: "https://frame-toque.vercel.app/dashboard", 
     siteName: "Frame Toque",
     images: [
       {
@@ -19,12 +18,13 @@ export const metadata = {
   },
 };
 
-import DashboardHome from "@/components/dashboard/DashboardHome.jsx";
+import React from 'react'
+import MainPage from './MainPage'
 
-export default function DashboardPageWrapper() {
+function page() {
   return (
-    <>
-      <DashboardHome />
-    </>
-  );
+    <MainPage/>
+  )
 }
+
+export default page
