@@ -71,7 +71,10 @@ export default function CustomLogin({ scrolled }) {
                 &nbsp;Back
               </span>
             </h1>
-            <p className="text-gray-400 text-lg">Sign in to continue</p>
+            <p className="text-gray-400 text-lg text-center">
+              If you recently created an account, login again to activate it. <br />
+              Or, if you already have an account, sign up to continue.
+            </p>
           </div>
 
           <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-white/10">
