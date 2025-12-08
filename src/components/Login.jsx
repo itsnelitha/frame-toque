@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession, SessionProvider } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,7 +9,15 @@ import { Mail, Lock } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function LoginPage() {
+export default function LoginPageWrapper() {
+  return (
+    <SessionProvider>
+      <LoginPage />
+    </SessionProvider>
+  );
+}
+
+function LoginPage() {
   const [scrolled, setScrolled] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +25,12 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirect") || "/dashboard";
+
+  // **Redirect if already logged in**
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session) router.push(redirectUrl);
+  }, [session, router]);
 
   useEffect(() => {
     function handleScroll() {
@@ -114,17 +128,17 @@ export default function LoginPage() {
             ))}
 
             {/* Divider */}
-            <div className="relative mb-6">
+            {/* <div className="relative mb-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-white/10"></div>
               </div>
-              <div className="relative flex justify-center text-sm">
+             <div className="relative flex justify-center text-sm">
                 <span className="px-4 bg-slate-950/50 text-gray-400">Or</span>
-              </div>
-            </div>
+              </div> 
+            </div> */}
 
             {/* Email/Password Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <div className="relative">
@@ -155,7 +169,6 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center">
                   <input type="checkbox" className="w-4 h-4 rounded border-white/10 bg-white/5 text-green-500" />
@@ -166,7 +179,6 @@ export default function LoginPage() {
                 </a>
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
@@ -174,15 +186,15 @@ export default function LoginPage() {
               >
                 {loading ? "Signing in..." : "Sign In"}
               </button>
-            </form>
+            </form> */}
 
             {/* Sign Up Link */}
-            <div className="mt-6 text-center text-sm text-gray-400">
+            {/* <div className="mt-6 text-center text-sm text-gray-400">
               Don't have an account?&nbsp;
               <Link href="/signup" className="text-green-400 hover:text-green-300 font-semibold">
                 Sign up
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Back to Home */}
