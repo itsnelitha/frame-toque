@@ -5,12 +5,17 @@ import { SessionProvider, useSession, signOut } from "next-auth/react";
 function DashboardContent() {
   const { data: session, status } = useSession();
 
+  // Show loading state while checking session
   if (status === "loading") {
     return <div className="p-10 text-white">Loading...</div>;
   }
 
+  // If no session, redirect to /login
   if (!session) {
-    return <div className="p-10 text-white">You are not logged in.</div>;
+    if (typeof window !== "undefined") {
+      window.location.href = "/login?redirect=/dashboard";
+    }
+    return null; // prevent rendering while redirecting
   }
 
   return (
@@ -34,7 +39,7 @@ function DashboardContent() {
   );
 }
 
-// Only this route gets SessionProvider
+// Only this route wraps with SessionProvider
 export default function DashboardPage() {
   return (
     <SessionProvider>
