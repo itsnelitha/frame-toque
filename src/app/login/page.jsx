@@ -1,8 +1,9 @@
-"use client";
+// app/login/page.jsx
+"use client"; // MUST be the very first line
 
 import { useEffect, useState } from "react";
-import { signIn, signOut, useSession, SessionProvider } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, signOut, useSession, SessionProvider } from "next-auth/react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -20,27 +21,16 @@ export default function LoginPageWrapper() {
 function LoginPage() {
   const [scrolled, setScrolled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const searchParams = useSearchParams();
+
   const router = useRouter();
+  const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirect") || "/dashboard";
 
-  // ✅ Safe to call useSession now
   const { data: session } = useSession();
 
-  // If user is already logged in, log them out automatically
   useEffect(() => {
-    if (session) {
-      signOut({ redirect: false }).then(() => console.log("Previous session ended"));
-    }
+    if (session) signOut({ redirect: false });
   }, [session]);
-
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 50);
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSignIn = async (provider) => {
     setLoading(true);
@@ -51,85 +41,53 @@ function LoginPage() {
     }
   };
 
-  const socialProviders = [
-    { provider: "google", label: "Continue with Google", icon: <FaGoogle className="w-5 h-5" /> },
-    { provider: "github", label: "Continue with GitHub", icon: <FaGithub className="w-5 h-5" /> },
-    { provider: "facebook", label: "Continue with Facebook", icon: <FaFacebookF className="w-5 h-5" /> },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
       <Navbar scrolled={scrolled} />
       <div className="h-20" />
-
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-
         <div className="max-w-md w-full relative z-10">
           <div className="text-center mb-8">
             <Link href="/">
-              <Image
-                src="/logos/ft/name-logo.png"
-                alt="Frame Toque"
-                width={200}
-                height={40}
-                className="w-48 h-auto mx-auto mb-6"
-              />
+              <Image src="/logos/ft/name-logo.png" alt="Frame Toque" width={200} height={40} className="w-48 h-auto mx-auto mb-6" />
             </Link>
             <h1 className="text-4xl sm:text-5xl font-bold mb-3">
-              <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
-                Welcome
-              </span>
-              <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
-                &nbsp;Back
-              </span>
+              <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">Welcome</span>
+              <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">&nbsp;Back</span>
             </h1>
             <p className="text-gray-400 text-lg">Sign in to continue</p>
           </div>
 
           <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-white/10">
             <div className="flex flex-col gap-3">
-              {socialProviders.map((btn) => (
+              {[{provider:"google",icon:<FaGoogle/>,label:"Continue with Google"},
+                {provider:"github",icon:<FaGithub/>,label:"Continue with GitHub"},
+                {provider:"facebook",icon:<FaFacebookF/>,label:"Continue with Facebook"}].map(btn => (
                 <button
                   key={btn.provider}
                   onClick={() => handleSignIn(btn.provider)}
                   disabled={loading}
                   className="relative w-full flex items-center justify-center gap-3 px-6 py-3 bg-white hover:bg-gray-50 text-gray-900 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <div className="flex-shrink-0">{btn.icon}</div>
+                  <div>{btn.icon}</div>
                   <span>{btn.label}</span>
-                  {loading && (
-                    <div className="absolute right-4">
-                      <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin" />
-                    </div>
-                  )}
+                  {loading && <div className="absolute right-4 w-4 h-4 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>}
                 </button>
               ))}
             </div>
 
-            <div className="my-6 border-t border-white/10"></div>
-
-            <p className="text-center text-xs text-gray-500">
-              By continuing, you agree to our{" "}
-              <Link href="/terms" className="text-green-400 hover:text-green-300">
-                Terms
-              </Link>{" "}
-              and{" "}
-              <Link href="/privacy" className="text-green-400 hover:text-green-300">
-                Privacy Policy
-              </Link>
+            <p className="text-center text-xs text-gray-500 mt-6">
+              By continuing, you agree to our <Link href="/terms" className="text-green-400 hover:text-green-300">Terms</Link> and <Link href="/privacy" className="text-green-400 hover:text-green-300">Privacy Policy</Link>
             </p>
-          </div>
-
-          <div className="mt-6 text-center">
-            <Link href="/" className="text-gray-400 hover:text-white text-sm">
-              ← Back to Home
-            </Link>
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
