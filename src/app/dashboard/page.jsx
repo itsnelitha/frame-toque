@@ -1,53 +1,30 @@
-"use client";
+export const metadata = {
+  title: "Dashboard | Frame Toque",
+  description:
+    "Access your Frame Toque client dashboard to manage your projects, browse services, and track your orders. Your one-stop solution for web development, graphics, and video editing.",
+  openGraph: {
+    title: "Dashboard | Frame Toque",
+    description: "Access your Frame Toque client dashboard to manage your projects, browse services, and track your orders.",
+    url: "https://frame-toque.vercel.app/dashboard",
+    siteName: "Frame Toque",
+    images: [
+      {
+        url: "https://frame-toque.vercel.app/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Frame Toque",
+      },
+    ],
+    type: "website",
+  },
+};
 
-import { useUser, SignOutButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import DashboardHome from "@/components/dashboard/DashboardHome.jsx";
 
-export default function DashboardPage() {
-  const { user, isLoaded } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (isLoaded && !user) {
-      router.push("/login");
-    }
-  }, [isLoaded, user, router]);
-
-  if (!isLoaded) return <div className="text-white">Loading...</div>;
-  if (!user) return <div className="text-white">Redirecting...</div>;
-
+export default function DashboardPageWrapper() {
   return (
-    <div className="min-h-screen bg-black text-white p-10">
-      <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
-
-      <div className="bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 max-w-lg">
-        
-        {/* USER IMAGE */}
-        <div className="flex items-center gap-4 mb-6">
-          <img
-            src={user.imageUrl}
-            alt={user.fullName}
-            width={70}
-            height={70}
-            className="rounded-full border border-white/20 shadow-lg"
-          />
-          <div>
-            <p className="text-2xl font-semibold">{user.fullName}</p>
-            <p className="text-gray-400 text-sm">
-              {user.primaryEmailAddress?.emailAddress}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8">
-          <SignOutButton redirectUrl="/login">
-            <button className="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600 transition">
-              Log Out
-            </button>
-          </SignOutButton>
-        </div>
-      </div>
-    </div>
+    <>
+      <DashboardHome />
+    </>
   );
 }
