@@ -115,9 +115,9 @@ export default function CustomLogin({ scrolled }) {
           </div>
 
           <div className="mt-6 text-center">
-            <Link href="/" className="text-gray-400 hover:text-white text-sm">
-              ← Back to Home
-            </Link>
+           <Link href="/signup" className="text-gray-400 hover:text-white text-sm">
+            New here? Create your account →
+          </Link>
           </div>
         </div>
       </section>
