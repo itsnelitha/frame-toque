@@ -4,34 +4,11 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar.jsx";
 import Footer from "@/components/Footer.jsx";
 import { Check, Star } from "lucide-react";
+import Link from "next/link";
+
+import WebSub from "@/components/services/WebSub";
 
 const pricingCategories = [
-  {
-    category: "Web Development",
-    plans: [
-      {
-        name: "Basic",
-        price: "10",
-        description: "For personal videos",
-        features: ["Simple Caption Style", "Correct Alignment", "Background Music", "Basic Color Correction", <>2 Revisions <i>(Each Extra Revision: $0.65)</i></>],
-        mostPopular: false,
-      },
-      {
-        name: "Standard",
-        price: "15",
-        description: "For content creators",
-        features: ["Advanced Annimations", "Trendy Viral Caption Style", "Sound Effects", "Background Music", "Cinematic Color Grading", <>3 Revisions <i>(Each Extra Revision: $0.65)</i></>],
-        mostPopular: true,
-      },
-      {
-        name: "Premium",
-        price: "25",
-        description: "For production studios",
-        features: ["Advanced VFX Annimations", "Masking", "Separate Annimated B-Roll", "Cinematic Color Grading", "Trendy Animated Caption Style", <>5 Revisions <i>(Each Extra Revision: $0.65)</i></>],
-        mostPopular: false,
-      },
-    ],
-  },
   {
     category: "Graphics Designing",
     plans: [
@@ -122,12 +99,17 @@ export default function ServicesMain() {
         </p>
       </div>
 
+      
+      <WebSub />
+      <br /><br />
+
       <div className="max-w-7xl mx-auto space-y-16">
         {pricingCategories.map((category, idx) => (
           <div key={idx}>
             <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-white">
               {category.category}
             </h2>
+            <br/>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-6">
               {category.plans.map((plan, key) => (
@@ -173,15 +155,15 @@ export default function ServicesMain() {
                     ))}
                   </ul>
 
-                  <button
-                    className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${
+                  <Link href="/contact"
+                    className={`text-center w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${
                       plan.mostPopular
                         ? "bg-gradient-to-b from-green-500 to-green-500"
                         : "bg-white/5 border border-white/10 hover:bg-white/10"
                     }`}
                   >
                     Get Started
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>

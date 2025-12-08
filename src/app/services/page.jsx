@@ -19,7 +19,7 @@ export const metadata = {
   },
 };
 
-import Services from "@/components/Services.jsx";
+import Services from "@/components/services/Services.jsx";
 
 export default function Home() {
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar.jsx";
 import Hero from "@/components/Hero.jsx";
-import ServicesHome from "@/components/ServicesHome.jsx";
+import ServicesHome from "@/components/services/ServicesHome.jsx";
 import SoftwareWeUse from "@/components/SoftwareWeUse.jsx";
 import ProjectsHome from "@/components/ProjectsHome.jsx";
 import Testimonials from "@/components/Testimonials.jsx";
