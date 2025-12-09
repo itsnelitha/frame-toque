@@ -24,7 +24,7 @@ export async function GET(request) {
         phone, 
         company, 
         website, 
-        bio
+        address
       FROM users 
       WHERE clerk_id = ${clerkId}
       LIMIT 1
@@ -45,7 +45,7 @@ export async function GET(request) {
         phone: user.phone || '',
         company: user.company || '',
         website: user.website || '',
-        bio: user.bio || '',
+        address: user.address || '',
         fullName: user.full_name || '',
         email: user.email || '',
       }

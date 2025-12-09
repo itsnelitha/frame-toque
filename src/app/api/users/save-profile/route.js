@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { clerkId, email, fullName, phone, company, website, bio } = body;
+    const { clerkId, email, fullName, phone, company, website, address } = body;
 
     if (!clerkId) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function POST(request) {
           phone = ${phone || null},
           company = ${company || null},
           website = ${website || null},
-          bio = ${bio || null},
+          address = ${address || null},
           updated_at = NOW()
         WHERE clerk_id = ${clerkId}
         RETURNING 
@@ -50,7 +50,7 @@ export async function POST(request) {
           phone, 
           company, 
           website, 
-          bio
+          address
       `;
     } else {
       // Insert new user
@@ -62,7 +62,7 @@ export async function POST(request) {
           phone, 
           company, 
           website, 
-          bio,
+          address,
           created_at,
           updated_at
         ) VALUES (
@@ -72,7 +72,7 @@ export async function POST(request) {
           ${phone || null}, 
           ${company || null}, 
           ${website || null}, 
-          ${bio || null},
+          ${address || null},
           NOW(),
           NOW()
         )
@@ -83,7 +83,7 @@ export async function POST(request) {
           phone, 
           company, 
           website, 
-          bio
+          address
       `;
     }
 
@@ -95,7 +95,7 @@ export async function POST(request) {
         phone: savedUser.phone || '',
         company: savedUser.company || '',
         website: savedUser.website || '',
-        bio: savedUser.bio || '',
+        address: savedUser.address || '',
         fullName: savedUser.full_name || '',
         email: savedUser.email || '',
       }

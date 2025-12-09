@@ -6,6 +6,9 @@ import Link from "next/link";
 import { ShoppingCart, MessageCircle, Sparkles } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
+
+import ProfileProgress from "./ProfileProgress";
+
 function getGreeting() {
   const hour = new Date().getHours();
 
@@ -83,6 +86,10 @@ export default function DashboardHome() {
   })}
 </div>
       </div>
+
+<ProfileProgress />
+
+
     </div>
   );
 }

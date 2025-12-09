@@ -11,7 +11,8 @@ import {
   MessageCircle,
   Upload,
   CreditCard,
-  Download
+  Download,
+  Lock
 } from "lucide-react";
 import Link from "next/link";
 
@@ -27,7 +28,7 @@ export default function SettingsPage() {
     phone: "",
     company: "",
     website: "",
-    bio: "",
+    address: "",
   });
 
   // Load Clerk user + DB data
@@ -60,7 +61,7 @@ export default function SettingsPage() {
               phone: data.profile?.phone || "",
               company: data.profile?.company || "",
               website: data.profile?.website || "",
-              bio: data.profile?.bio || "",
+              address: data.profile?.address || "",
             });
           } else {
             // If API failed, fallback to Clerk data only
@@ -70,7 +71,7 @@ export default function SettingsPage() {
               phone: "",
               company: "",
               website: "",
-              bio: "",
+              address: "",
             });
           }
         } catch (err) {
@@ -82,7 +83,7 @@ export default function SettingsPage() {
             phone: "",
             company: "",
             website: "",
-            bio: "",
+            address: "",
           });
         } finally {
           setLoading(false);
@@ -130,7 +131,7 @@ export default function SettingsPage() {
         phone: formData.phone || null,
         company: formData.company || null,
         website: formData.website || null,
-        bio: formData.bio || null,
+        address: formData.address || null,
       };
 
       const res = await fetch("/api/users/save-profile", {
@@ -182,6 +183,7 @@ export default function SettingsPage() {
 
   const tabs = [
     { id: "profile", name: "Profile", icon: User },
+    { id: "account", name: "Account", icon: Lock },
     { id: "payment", name: "Payment", icon: CreditCard },
   ];
 
@@ -337,6 +339,7 @@ export default function SettingsPage() {
                         placeholder="+94712345678"
                         type="tel"
                         name="phone"
+                        required
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
@@ -346,7 +349,7 @@ export default function SettingsPage() {
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
                         <Building className="w-4 h-4 inline mr-2" />
-                        Company Name
+                        Company Name (Optional)
                       </label>
                       <input
                         type="text"
@@ -373,18 +376,19 @@ export default function SettingsPage() {
                     />
                   </div>
 
-                  {/* Bio */}
+                  {/* address */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      About / Project Interests
+                      Billing Address
                     </label>
                     <textarea
-                      name="bio"
-                      value={formData.bio}
+                      name="address"
+                      value={formData.address}
                       onChange={handleChange}
                       rows={4}
+                      required
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                      placeholder="Tell us about your business..."
+                      placeholder="123 Business Street, New York, NY 10001, United States"
                     />
                   </div>
 
@@ -402,6 +406,96 @@ export default function SettingsPage() {
               </div>
             )}
             
+
+
+            {activeTab === "account" && (
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-white mb-6">Account Security</h2>
+
+                <form className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Current Password
+                    </label>
+                    <input
+                      type="password"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="••••••••"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      New Password
+                    </label>
+                    <input
+                      type="password"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="••••••••"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Confirm New Password
+                    </label>
+                    <input
+                      type="password"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="••••••••"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    <Lock className="w-5 h-5" />
+                    Update Password
+                  </button>
+                </form>
+
+                <div className="pt-6 border-t border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-4">Connected Accounts</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                          <svg className="w-6 h-6" viewBox="0 0 24 24">
+                            <path
+                              fill="#4285F4"
+                              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                            />
+                            <path
+                              fill="#34A853"
+                              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                            />
+                            <path
+                              fill="#FBBC05"
+                              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                            />
+                            <path
+                              fill="#EA4335"
+                              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-white font-medium">Google</p>
+                          <p className="text-sm text-gray-400">Connected</p>
+                        </div>
+                      </div>
+                      <button className="text-red-400 hover:text-red-300 transition-colors text-sm">
+                        Disconnect
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+
+
              {activeTab === "payment" && (
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Payment & Billing</h2>
@@ -410,7 +504,7 @@ export default function SettingsPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-4">Payment Methods</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
+                    {/* <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
                       <div className="flex items-center gap-4">
                         <div className="w-14 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded flex items-center justify-center text-white text-sm font-bold">
                           VISA
@@ -423,26 +517,25 @@ export default function SettingsPage() {
                       <button className="text-red-400 hover:text-red-300 transition-colors text-sm font-medium">
                         Remove
                       </button>
-                    </div>
+                    </div> */}
 
                     <div className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
                       <div className="flex items-center gap-4">
                         <div className="w-14 h-10 bg-gradient-to-r from-orange-600 to-orange-700 rounded flex items-center justify-center text-white text-sm font-bold">
-                          MC
+                          TFR
                         </div>
                         <div>
-                          <p className="text-white font-medium">•••• •••• •••• 8888</p>
-                          <p className="text-sm text-gray-400">Expires 08/26</p>
+                          <p className="text-white font-medium">BANK TRANSFER</p>
+                          <p className="text-sm text-gray-400">Upload your bank slip after payment</p>
                         </div>
                       </div>
-                      <button className="text-red-400 hover:text-red-300 transition-colors text-sm font-medium">
-                        Remove
-                      </button>
+                      
                     </div>
                   </div>
                   
                   <button className="mt-4 px-6 py-3 bg-white/10 border border-white/10 rounded-lg hover:bg-white/20 transition-colors font-medium">
-                    + Add Payment Method
+                    {/* + Add Payment Method */}
+                    More Payment Methods Available Soon
                   </button>
                 </div>
 
@@ -450,14 +543,19 @@ export default function SettingsPage() {
                 <div className="pt-6 border-t border-white/10">
                   <h3 className="text-lg font-semibold text-white mb-4">Billing Address</h3>
                   <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                    <p className="text-white font-medium mb-1">John Doe</p>
-                    <p className="text-gray-400 text-sm">123 Business Street</p>
-                    <p className="text-gray-400 text-sm">New York, NY 10001</p>
-                    <p className="text-gray-400 text-sm">United States</p>
+                    <p className="text-white font-medium mb-1">{formData.name}</p>
+                    <p className="text-gray-400 text-sm">{formData.address}</p>
                   </div>
-                  <button className="mt-4 px-6 py-3 bg-white/10 border border-white/10 rounded-lg hover:bg-white/20 transition-colors font-medium">
-                    Update Address
-                  </button>
+                  <button
+                  onClick={() => setActiveTab("profile")}
+                  className={`mt-4 px-6 py-3 rounded-lg font-medium border transition-colors ${
+                    activeTab === "profile"
+                      ? "bg-green-500 text-white border-green-500"
+                      : "bg-white/10 border-white/10 hover:bg-white/20 text-white"
+                  }`}
+                >
+                  Update Address
+                </button>
                 </div>
 
                 {/* Billing History */}
