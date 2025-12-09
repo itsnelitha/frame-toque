@@ -5,9 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useUser, SignOutButton } from "@clerk/nextjs";
-import { 
-  Bell, Menu, Search, LayoutDashboard, ClipboardList, Briefcase, 
-  Settings, LogOut, X, ChevronLeft, ChevronRight 
+import {
+  Bell,
+  Menu,
+  Search,
+  LayoutDashboard,
+  ClipboardList,
+  Briefcase,
+  Settings,
+  LogOut,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 export default function DashboardLayout({ children }) {
@@ -17,7 +26,7 @@ export default function DashboardLayout({ children }) {
   const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
     const [collapsed, setCollapsed] = useState(false);
     const pathname = usePathname();
-    const { user, isLoaded } = useUser(); // <-- use isLoaded to safely render user info
+    const { user, isLoaded } = useUser();
 
     const links = [
       { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -46,6 +55,7 @@ export default function DashboardLayout({ children }) {
             ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
         >
           <div className="flex flex-col h-full">
+            {/* Logo + Collapse */}
             <div className="flex items-center justify-between p-6 border-b border-white/10">
               {!collapsed && (
                 <Link href="/">
@@ -70,10 +80,11 @@ export default function DashboardLayout({ children }) {
                 onClick={() => setCollapsed(!collapsed)}
                 className="hidden lg:block p-2 hover:bg-white/10 rounded-lg"
               >
-                {collapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
+                {collapsed ? <ChevronRight /> : <ChevronLeft />}
               </button>
             </div>
 
+            {/* Links */}
             <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
               {links.map((item) => {
                 const Icon = item.icon;
@@ -84,39 +95,51 @@ export default function DashboardLayout({ children }) {
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all
-                      ${active ? "bg-gradient-to-r from-green-600 to-green-700 text-white" : "text-gray-300 hover:bg-white/5"}`}
+                      ${
+                        active
+                          ? "bg-gradient-to-r from-green-600 to-green-700 text-white"
+                          : "text-gray-300 hover:bg-white/5"
+                      }`}
                   >
-                    <Icon className="w-5 h-5 flex-shrink-0" />
-                    {!collapsed && <span className="font-medium">{item.name}</span>}
+                    <Icon className="w-5 h-5" />
+                    {!collapsed && <span>{item.name}</span>}
                   </Link>
                 );
               })}
             </nav>
 
+            {/* User */}
             <div className="p-4 border-t border-white/10">
-              <div className={`flex items-center gap-3 p-3 bg-white/5 rounded-lg mb-3 ${collapsed ? "justify-center" : ""}`}>
-                <div className="w-10 h-10 rounded-full overflow-hidden">
-            
-{isLoaded && user?.imageUrl && (
-  <img
-    src={user.imageUrl}
-    alt={user.fullName || "User"}
-    className="object-cover w-full h-full"
-  />
-)}
-
-                
+              <div
+                className={`flex items-center gap-3 p-3 bg-white/5 rounded-lg mb-3 ${
+                  collapsed ? "justify-center" : ""
+                }`}
+              >
+ <div className="flex-shrink-0 w-10 h-10">
+      {isLoaded && user?.imageUrl ? (
+        <img
+          src={user.imageUrl}
+          alt={user.fullName || "User"}
+          className="w-10 h-10 rounded-full object-cover"
+        />
+      ) : (
+        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-700 flex items-center justify-center text-white font-semibold">
+          {user?.firstName?.charAt(0) || "U"}
+        </div>
+                  )}
                 </div>
 
                 {!collapsed && user && (
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-white truncate">{user.fullName}</p>
-                    <p className="text-xs text-gray-400 truncate">{user.emailAddresses[0]?.emailAddress}</p>
+                  <div>
+                    <p className="text-sm font-semibold">{user.fullName}</p>
+                    <p className="text-xs text-gray-400">
+                      {user.emailAddresses[0]?.emailAddress}
+                    </p>
                   </div>
                 )}
               </div>
 
-              {/* Clerk sign out button */}
+              {/* Logout */}
               <SignOutButton redirectUrl="/login">
                 <button
                   className={`flex items-center gap-3 px-4 py-3 w-full text-gray-300 hover:bg-red-500/10 hover:text-red-400 rounded-lg ${
@@ -124,10 +147,9 @@ export default function DashboardLayout({ children }) {
                   }`}
                 >
                   <LogOut className="w-5 h-5" />
-                  {!collapsed && <span className="font-medium">Logout</span>}
+                  {!collapsed && <span>Logout</span>}
                 </button>
               </SignOutButton>
-
             </div>
           </div>
         </aside>
@@ -136,25 +158,28 @@ export default function DashboardLayout({ children }) {
   };
 
   // ------------------ Header ------------------
-  const Header = ({ setMobileMenuOpen }) => {
+  const Header = ({ user, isLoaded, setMobileMenuOpen }) => {
     return (
       <header className="sticky top-0 z-30 bg-slate-950/80 backdrop-blur-xl border-b border-white/10">
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-4">
-            <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden p-2 hover:bg-white/10 rounded-lg">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="lg:hidden p-2 hover:bg-white/10 rounded-lg"
+            >
               <Menu className="w-6 h-6" />
             </button>
 
             <div className="hidden sm:flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 w-64 lg:w-96">
               <Search className="w-5 h-5 text-gray-400" />
               <input
-                type="text"
                 placeholder="Search..."
-                className="bg-transparent border-none outline-none text-white placeholder-gray-500 w-full"
+                className="bg-transparent outline-none text-white w-full"
               />
             </div>
           </div>
 
+          {/* Right */}
           <div className="flex items-center gap-3">
             <button className="sm:hidden p-2 hover:bg-white/10 rounded-lg">
               <Search className="w-5 h-5" />
@@ -165,22 +190,37 @@ export default function DashboardLayout({ children }) {
               <span className="absolute top-1 right-1 w-2 h-2 bg-green-500 rounded-full"></span>
             </button>
 
-            <div className="lg:hidden w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white text-sm font-bold">
-              JD
-            </div>
+            {/* Mobile Avatar */}
+            {isLoaded && user?.imageUrl && (
+              <div className="lg:hidden w-8 h-8 rounded-full overflow-hidden">
+                <img
+                  src={user.imageUrl}
+                  alt={user.fullName || "User"}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            )}
           </div>
         </div>
       </header>
     );
   };
 
-  // ------------------ Layout ------------------
+  const { user, isLoaded } = useUser();
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      <Sidebar mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+      <Sidebar
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+      />
 
       <div className="lg:pl-64 transition-all duration-300">
-        <Header setMobileMenuOpen={setMobileMenuOpen} />
+        <Header
+          user={user}
+          isLoaded={isLoaded}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
 
         <main className="p-4 sm:p-6 lg:p-8">{children}</main>
       </div>

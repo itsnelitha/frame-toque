@@ -10,7 +10,7 @@ const webcatprices = [
     key: "personal",
     title: "Personal Portfolio Website",
     desc: "Perfect for creators, freelancers, and professionals who want a clean digital identity.",
-    price: "299",
+    price: "249",
     plans: [
       {
         name: "Standard",
