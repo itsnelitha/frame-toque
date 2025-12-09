@@ -12,8 +12,9 @@ export default function Navbar({ scrolled }) {
    const links = [
     { href: "/about", label: "About Us" },
     { href: "/projects", label: "Our Projects" },
+    { href: "/services", label: "Our Services" },
     { href: "/contact", label: "Contact Us" },
-    { href: "/services", label: "Start Your Project", special: true },
+    { href: "/dashboard", label: "Start Your Project", special: true },
   ];
 
   return (

@@ -109,23 +109,26 @@ export default function DashboardLayout({ children }) {
             </nav>
 
             {/* User */}
+            
             <div className="p-4 border-t border-white/10">
+            <Link href="/dashboard/settings" >
               <div
                 className={`flex items-center gap-3 p-3 bg-white/5 rounded-lg mb-3 ${
                   collapsed ? "justify-center" : ""
                 }`}
               >
- <div className="flex-shrink-0 w-10 h-10">
-      {isLoaded && user?.imageUrl ? (
-        <img
-          src={user.imageUrl}
-          alt={user.fullName || "User"}
-          className="w-10 h-10 rounded-full object-cover"
-        />
-      ) : (
-        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-700 flex items-center justify-center text-white font-semibold">
-          {user?.firstName?.charAt(0) || "U"}
-        </div>
+                
+                <div className="flex-shrink-0 w-10 h-10">
+                  {isLoaded && user?.imageUrl ? (
+                    <img
+                      src={user.imageUrl}
+                      alt={user.fullName || "User"}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-600 to-green-700 flex items-center justify-center text-white font-semibold">
+                      {user?.firstName?.charAt(0) || "U"}
+                    </div>
                   )}
                 </div>
 
@@ -138,6 +141,7 @@ export default function DashboardLayout({ children }) {
                   </div>
                 )}
               </div>
+              </Link>
 
               {/* Logout */}
               <SignOutButton redirectUrl="/login">
@@ -192,6 +196,7 @@ export default function DashboardLayout({ children }) {
 
             {/* Mobile Avatar */}
             {isLoaded && user?.imageUrl && (
+              <Link href="/dashboard/settings" >
               <div className="lg:hidden w-8 h-8 rounded-full overflow-hidden">
                 <img
                   src={user.imageUrl}
@@ -199,6 +204,7 @@ export default function DashboardLayout({ children }) {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
+              </Link>
             )}
           </div>
         </div>
