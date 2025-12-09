@@ -23,7 +23,7 @@ export default function DashboardHome() {
 
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
-      router.push("/signup"); 
+      router.push("/login"); 
     }
   }, [isLoaded, isSignedIn, router]);
 
