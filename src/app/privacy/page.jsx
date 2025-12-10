@@ -5,11 +5,11 @@ export const metadata = {
     openGraph: {
     title: "Privacy Policy | Frame Toque",
     description: "Read the privacy policy for Frame Toque, detailing how we collect and handle user data when submitting projects or using our services.",
-    url: "https://frame-toque.vercel.app/privacy", 
+    url: "https://frametoque.online/privacy", 
     siteName: "Frame Toque",
     images: [
       {
-        url: "https://frame-toque.vercel.app/images/og-image.png",
+        url: "https://frametoque.online/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Frame Toque",

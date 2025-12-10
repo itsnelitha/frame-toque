@@ -78,7 +78,7 @@ export default function ContactPage() {
             {[
               { href: "https://instagram.com/frame.toque", icon: <Instagram />, label: "Instagram" },
               { href: "https://linkedin.com/company/frametoque", icon: <Linkedin />, label: "LinkedIn" },
-              { href: "https://tiktok.com/frametoque", icon: <Music2 />, label: "TikTok" },
+              { href: "https://tiktok.com/@ft.media", icon: <Music2 />, label: "TikTok" },
               { href: "https://t.me/FrameToque", icon: <Send />, label: "Telegram" },
             ].map((item, idx) => (
               <Link

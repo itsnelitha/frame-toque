@@ -53,29 +53,41 @@ export default function CustomLogin({ scrolled }) {
         <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
         <div className="max-w-md w-full relative z-10">
-          <div className="text-center mb-8">
-            <Link href="/">
-              <Image
-                src="/logos/ft/name-logo.png"
-                alt="Frame Toque"
-                width={200}
-                height={40}
-                className="w-48 h-auto mx-auto mb-6"
-              />
-            </Link>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-3">
-              <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
-                Welcome
-              </span>
-              <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
-                &nbsp;Back
-              </span>
-            </h1>
-            <p className="text-gray-400 text-lg text-center">
-              If you recently created an account, login again to activate it. <br />
-              Or, if you already have an account, sign up to continue.
-            </p>
-          </div>
+          <div className="text-center mb-10">
+          <Link href="/">
+            <Image
+              src="/logos/ft/name-logo.png"
+              alt="Frame Toque"
+              width={200}
+              height={40}
+              className="w-48 h-auto mx-auto mb-8 opacity-90 hover:opacity-100 transition"
+            />
+          </Link>
+
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3">
+                    <span className="bg-gradient-to-b from-white to-gray-300 bg-clip-text text-transparent">
+                        Welcome
+                    </span>
+                    <span className="bg-gradient-to-b from-green-400 to-green-500 bg-clip-text text-transparent">
+                        &nbsp;Back
+                    </span>
+                </h1>
+
+              <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto leading-relaxed">
+                If you recently created an account, just log in again to activate it.<br />
+                Already with us? Hop back in and continue.
+              </p>
+
+              <div className="mt-6">
+                <Link
+                  href="/signup"
+                  className="text-gray-400 hover:text-white text-sm underline underline-offset-4 hover:underline-offset-2 transition-all"
+                >
+                  New here? Create your account →
+                </Link>
+              </div>
+            </div>
+
 
           <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-white/10">
             {errorMsg && (
@@ -117,11 +129,6 @@ export default function CustomLogin({ scrolled }) {
             </p>
           </div>
 
-          <div className="mt-6 text-center">
-           <Link href="/signup" className="text-gray-400 hover:text-white text-sm">
-            New here? Create your account →
-          </Link>
-          </div>
         </div>
       </section>
       <Footer />

@@ -5,11 +5,11 @@ export const metadata = {
     openGraph: {
     title: "Terms & Conditions | Frame Toque",
     description: "Read the terms and conditions for using Frame Toque's web development, graphic designing, and video editing services.",
-    url: "https://frame-toque.vercel.app/terms", 
+    url: "https://frametoque.online/terms", 
     siteName: "Frame Toque",
     images: [
       {
-        url: "https://frame-toque.vercel.app/images/og-image.png",
+        url: "https://frametoque.online/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Frame Toque",

@@ -4,11 +4,11 @@ export const metadata = {
   openGraph: {
     title: "Dashboard | Frame Toque",
     description: "We craft fast websites, bold graphics, and pro videos that make your brand shine.",
-    url: "https://frame-toque.vercel.app/dashboard", 
+    url: "https://frametoque.online/dashboard", 
     siteName: "Frame Toque",
     images: [
       {
-        url: "https://frame-toque.vercel.app/images/og-image.png",
+        url: "https://frametoque.online/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Frame Toque",
