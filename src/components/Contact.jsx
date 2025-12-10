@@ -55,8 +55,8 @@ export default function ContactPage() {
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <Mail className="text-green-400 w-6 h-6" />
-              <a href="mailto:frametoque@gmail.com" className="hover:text-green-400 transition">
-                frametoque@gmail.com
+              <a href="mailto:contact@frametoque.online" className="hover:text-green-400 transition">
+                contact@frametoque.online
               </a>
             </div>
 

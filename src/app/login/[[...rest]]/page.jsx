@@ -23,7 +23,7 @@ export default function CustomLogin({ scrolled }) {
 
   const socialProviders = [
     { provider: "oauth_google", label: "Continue with Google", icon: <FcGoogle size={20} /> },
-    { provider: "oauth_apple", label: "Continue with Apple", icon: <FaApple size={20} /> },
+    { provider: "oauth_apple", label: "Continue with Apple (Coming Soon)", icon: <FaApple size={20} /> },
     { provider: "oauth_github", label: "Continue with Github", icon: <FaGithub size={20} /> },
   ];
 

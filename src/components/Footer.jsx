@@ -11,7 +11,7 @@ const urls = [
   "https://tiktok.com/@ft.media",
   "https://linkedin.com/in/company/frametoque",
   "https://instagram.com/frame.toque",
-  "mailto:frametoque@gmail.com"
+  "mailto:contact@frametoque.online"
 ];
 
 export default function Footer() {

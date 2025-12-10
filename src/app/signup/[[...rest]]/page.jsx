@@ -23,7 +23,7 @@ export default function CustomSignUp({ scrolled }) {
 
   const socialProviders = [
     { provider: "oauth_google", label: "Sign up with Google", icon: <FcGoogle size={20} /> },
-    { provider: "oauth_apple", label: "Sign up with Apple", icon: <FaApple size={20} /> },
+    { provider: "oauth_apple", label: "Sign up with Apple (Coming Soon)", icon: <FaApple size={20} /> },
     { provider: "oauth_github", label: "Sign up with Github", icon: <FaGithub size={20} /> },
   ];
 

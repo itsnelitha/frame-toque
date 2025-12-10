@@ -138,7 +138,7 @@ export default function ServicesMain() {
                     ))}
                   </ul>
 
-                  <Link href="/contact"
+                  <Link href="/dashboard"
                     className={`text-center w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${
                       plan.mostPopular
                         ? "bg-gradient-to-b from-green-500 to-green-500"
