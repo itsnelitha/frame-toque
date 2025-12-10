@@ -1,0 +1,89 @@
+export const metadata = {
+  title: "Cookie Policy | Frame Toque",
+  description:
+    "Read the cookie policy for Frame Toque, explaining how we use cookies and similar technologies on our website.",
+    openGraph: {
+    title: "Cookie Policy | Frame Toque",
+    description: "Read the cookie policy for Frame Toque, explaining how we use cookies and similar technologies on our website.",
+    url: "https://frametoque.online/cookies", 
+    siteName: "Frame Toque",
+    images: [
+      {
+        url: "https://frametoque.online/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Frame Toque",
+      },
+    ],
+    type: "website",
+  },
+};
+
+import Navbar from "@/components/Navbar";
+import Link from "next/link";
+import Footer from "@/components/Footer.jsx";
+
+export default function Cookies() {
+  return (
+    <>
+      <main  className="min-h-screen bg-slate-950 text-white overflow-hidden">
+        <Navbar />
+        <br></br>
+        <div className="min-h-screen bg-slate-950 text-white px-6 sm:px-10 lg:px-16 py-16">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-8 text-center">Cookie Policy</h1>
+
+          <section className="space-y-6 max-w-4xl mx-auto">
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">1. What Are Cookies</h2>
+              <p className="text-gray-300 leading-relaxed">
+                Cookies are small text files stored on your device when you visit a website. They help enhance your browsing experience and allow websites to remember your preferences.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">2. How We Use Cookies</h2>
+              <p className="text-gray-300 leading-relaxed">
+                Frame Toque uses cookies to:
+              </p>
+              <ul className="list-disc list-inside text-gray-300 leading-relaxed">
+                <li>Remember your preferences and settings</li>
+                <li>Analyze website traffic and performance</li>
+                <li>Improve user experience</li>
+                <li>Support functional features, such as project submissions</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">3. Third-Party Cookies</h2>
+              <p className="text-gray-300 leading-relaxed">
+                We may use third-party services, such as analytics providers, which may place cookies on your device. These cookies help us understand website usage and improve our services.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">4. Managing Cookies</h2>
+              <p className="text-gray-300 leading-relaxed">
+                You can control or delete cookies through your browser settings. However, some features of our website may not work correctly if cookies are disabled.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">5. Updates to This Policy</h2>
+              <p className="text-gray-300 leading-relaxed">
+                We may update this Cookie Policy from time to time. Continued use of Frame Toque indicates your acceptance of any changes.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mb-2">6. Contact</h2>
+              <p className="text-gray-300 leading-relaxed">
+                For questions about this Cookie Policy, please <Link href="/contact" className="text-green-600 hover:text-green-500 font-semibold">contact us</Link>.
+              </p>
+            </div>
+          </section>
+        </div>
+        <Footer />
+      </main >
+    </>
+  );
+}
