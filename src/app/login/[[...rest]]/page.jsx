@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSignIn, useSignUp, useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,84 +20,65 @@ export default function UnifiedAuth({ scrolled }) {
   const [pendingProvider, setPendingProvider] = useState(null);
   const [hasCheckedAuth, setHasCheckedAuth] = useState(false);
 
+  // Optimized cookie check - runs only once on mount
   useEffect(() => {
     const checkPreviousAuth = () => {
-      const indicators = [
-        localStorage.getItem('clerk-db-jwt'), // Clerk JWT
-        localStorage.getItem('__clerk_client_jwt'), // Another Clerk JWT key
-        sessionStorage.getItem('clerk-db-jwt'),
-        document.cookie.includes('__session'), // Clerk session cookie
-        document.cookie.includes('__client'),
-      ];
+      // Faster cookie check using RegExp
+      const cookieString = document.cookie;
+      const hasAuthCookies = /__clerk|__session/i.test(cookieString);
       
-      // Check for  Clerk cookies
-      const hasClerkCookies = document.cookie.split(';').some(cookie => 
-        cookie.trim().startsWith('__clerk') || 
-        cookie.trim().startsWith('__session')
-      );
+      // Faster localStorage check
+      let hasLocalStorageTokens = false;
+      try {
+        const clerkJwt = localStorage.getItem('clerk-db-jwt');
+        hasLocalStorageTokens = !!clerkJwt && clerkJwt !== 'null' && clerkJwt !== 'undefined';
+      } catch (e) {
+        // localStorage might be blocked
+      }
       
-      const hasPreviousAuth = indicators.some(indicator => 
-        indicator && indicator !== 'null' && indicator !== 'undefined'
-      ) || hasClerkCookies;
+      const isFirstVisit = localStorage.getItem('ft_first_visit') === null;
       
-      // Also check for recent signup attempts in localStorage
-      const recentSignupAttempt = localStorage.getItem('recent_signup_attempt');
-      const isFirstVisit = localStorage.getItem('is_first_visit') === null;
-      
-      // Set initial auth state
-      if (hasPreviousAuth || recentSignupAttempt) {
+      if (hasAuthCookies || hasLocalStorageTokens) {
         setIsLogin(true);
+        localStorage.setItem('preferred_auth_mode', 'signin');
       } else if (isFirstVisit) {
         setIsLogin(false);
-        localStorage.setItem('is_first_visit', 'false');
-      } else {e
+        localStorage.setItem('ft_first_visit', 'visited');
+        localStorage.setItem('preferred_auth_mode', 'signup');
+      } else {
         const preferredAuthMode = localStorage.getItem('preferred_auth_mode');
-        if (preferredAuthMode === 'signup') {
-          setIsLogin(false);
-        }
+        setIsLogin(preferredAuthMode !== 'signup');
       }
       
       setHasCheckedAuth(true);
     };
 
-    const timer = setTimeout(checkPreviousAuth, 100);
-    return () => clearTimeout(timer);
+    // Immediate check without delay
+    checkPreviousAuth();
   }, []);
 
-  useEffect(() => {
-    if (hasCheckedAuth) {
-      localStorage.setItem('preferred_auth_mode', isLogin ? 'signin' : 'signup');
-    }
-  }, [isLogin, hasCheckedAuth]);
-
+  // Optimized: Debounced localStorage update
   useEffect(() => {
     if (!hasCheckedAuth) return;
     
-    const hasActiveSession = localStorage.getItem('clerk-db-jwt') || 
-                            document.cookie.includes('__session');
+    const timer = setTimeout(() => {
+      localStorage.setItem('preferred_auth_mode', isLogin ? 'signin' : 'signup');
+    }, 300);
     
-    if (clerk && !hasActiveSession) {
+    return () => clearTimeout(timer);
+  }, [isLogin, hasCheckedAuth]);
+
+  // Optimized: Non-blocking session clear
+  useEffect(() => {
+    if (!hasCheckedAuth || !clerk) return;
+    
+    const hasAuthCookies = /__clerk|__session/i.test(document.cookie);
+    
+    if (!hasAuthCookies) {
+      // Don't wait for signOut to complete
       clerk.signOut().catch(() => {});
     }
   }, [clerk, hasCheckedAuth]);
-
-  // hidden CAPTCHA element for Clerk
-  useEffect(() => {
-    const captchaElement = document.getElementById('clerk-captcha');
-    if (!captchaElement) {
-      const div = document.createElement('div');
-      div.id = 'clerk-captcha';
-      div.style.display = 'none';
-      document.body.appendChild(div);
-    }
-    
-    return () => {
-      const captchaElement = document.getElementById('clerk-captcha');
-      if (captchaElement && captchaElement.parentNode) {
-        captchaElement.parentNode.removeChild(captchaElement);
-      }
-    };
-  }, []);
 
   const socialProviders = [
     { 
@@ -118,10 +99,10 @@ export default function UnifiedAuth({ scrolled }) {
     },
   ];
 
-  async function handleSocialAuth(provider) {
+  // Optimized signup handler with timeout protection
+  const handleSocialAuth = useCallback(async (provider) => {
     if (!signInLoaded || !signUpLoaded) return;
     
-    // Check if provider is disabled
     const providerInfo = socialProviders.find(p => p.provider === provider);
     if (providerInfo?.disabled) return;
     
@@ -129,50 +110,104 @@ export default function UnifiedAuth({ scrolled }) {
     setPendingProvider(provider);
     setErrorMsg("");
     
-    // Track signup attempt in localStorage
+    // Track signup attempt (non-blocking)
     if (!isLogin) {
       localStorage.setItem('recent_signup_attempt', Date.now().toString());
       localStorage.setItem('preferred_auth_mode', 'signup');
     }
     
     try {
-      if (isLogin) {
-        // Login flow
-        await signIn.authenticateWithRedirect({
-          strategy: provider,
-          redirectUrl: "/dashboard",
-        });
-      } else {
-        // Signup flow
-        await signUp.create({
-          externalAccountStrategy: provider,
-        });
-        
-        await signUp.authenticateWithRedirect({
-          strategy: provider,
-          redirectUrl: "/dashboard",
-          unsafeMetadata: {
-            bypassCaptcha: true,
-          },
-        });
-      }
+      // Add timeout protection for signup
+      const authPromise = isLogin 
+        ? signIn.authenticateWithRedirect({
+            strategy: provider,
+            redirectUrl: "/dashboard",
+          })
+        : signUp.authenticateWithRedirect({
+            strategy: provider,
+            redirectUrl: "/dashboard",
+            // Remove unsafeMetadata if not needed
+          });
+      
+      // Race between auth and timeout (10 seconds)
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Authentication timeout')), 10000)
+      );
+      
+      await Promise.race([authPromise, timeoutPromise]);
+      
     } catch (err) {
       console.error("Auth error:", err);
-      setErrorMsg(err.errors?.[0]?.longMessage || err.message || "Something went wrong.");
+      
+      // Clear loading state immediately
       setLoading(false);
       setPendingProvider(null);
       
-      // Remove signup attempt flag if failed
+      // User-friendly error messages
+      if (err.message === 'Authentication timeout') {
+        setErrorMsg("Taking too long. Please check your connection and try again.");
+      } else if (err.errors?.[0]?.code === 'captcha_invalid') {
+        setErrorMsg("Security check failed. Please try again.");
+      } else if (err.errors?.[0]?.code === 'form_identifier_not_found') {
+        setErrorMsg("Account not found. Try signing up instead.");
+      } else {
+        const errorMessage = err.errors?.[0]?.longMessage || err.message || "Authentication failed.";
+        setErrorMsg(errorMessage.length > 100 ? "Something went wrong. Please try again." : errorMessage);
+      }
+      
+      // Clear signup attempt if failed (non-blocking)
       if (!isLogin) {
-        localStorage.removeItem('recent_signup_attempt');
+        setTimeout(() => {
+          localStorage.removeItem('recent_signup_attempt');
+        }, 0);
       }
     }
-  }
+  }, [isLogin, signInLoaded, signUpLoaded, signIn, signUp]);
 
-  const title = isLogin ? "Welcome Back" : "Create Account";
-  const subtitle = isLogin 
-    ? "If you recently created an account, just log in again to activate it. Already with us? Hop back in and continue."
-    : "Get started with your account today. Choose your preferred sign up method below.";
+  // Preload Clerk resources for faster signup
+  useEffect(() => {
+    if (!hasCheckedAuth) return;
+    
+    // Preload OAuth providers in the background
+    const preloadProviders = async () => {
+      try {
+        // This triggers Clerk to load necessary resources without blocking UI
+        if (signInLoaded) {
+          await signIn.get();
+        }
+        if (signUpLoaded) {
+          await signUp.get();
+        }
+      } catch (error) {
+        // Silent fail - this is just preloading
+      }
+    };
+    
+    // Delay preloading to avoid blocking initial render
+    const timer = setTimeout(preloadProviders, 1000);
+    return () => clearTimeout(timer);
+  }, [hasCheckedAuth, signInLoaded, signUpLoaded, signIn, signUp]);
+
+const subtitle = isLogin 
+  ? (
+    <>
+      If you're <span className="font-bold text-green-400">new to our site</span>, just click <span className="font-bold text-green-400">Sign Up</span> to create an account. Already with us? Hop back in and continue.
+    </>
+  )
+  : "Get started with your account today. Choose your preferred sign up method below.";
+
+  // Memoized button click handlers
+  const handleSignInClick = useCallback(() => {
+    if (!loading) setIsLogin(true);
+  }, [loading]);
+
+  const handleSignUpClick = useCallback(() => {
+    if (!loading) setIsLogin(false);
+  }, [loading]);
+
+  const handleToggleAuthMode = useCallback(() => {
+    if (!loading) setIsLogin(!isLogin);
+  }, [loading, isLogin]);
 
   if (!hasCheckedAuth) {
     return (
@@ -216,6 +251,7 @@ export default function UnifiedAuth({ scrolled }) {
                 width={200}
                 height={40}
                 className="w-48 h-auto mx-auto mb-8 opacity-90 hover:opacity-100 transition"
+                priority // Add priority for faster image load
               />
             </Link>
 
@@ -232,10 +268,9 @@ export default function UnifiedAuth({ scrolled }) {
               {subtitle}
             </p>
 
-            {/* Auth Mode Toggle */}
             <div className="flex items-center justify-center gap-2 mb-6">
               <button
-                onClick={() => setIsLogin(true)}
+                onClick={handleSignInClick}
                 disabled={loading}
                 className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
                   isLogin 
@@ -246,7 +281,7 @@ export default function UnifiedAuth({ scrolled }) {
                 Sign In
               </button>
               <button
-                onClick={() => setIsLogin(false)}
+                onClick={handleSignUpClick}
                 disabled={loading}
                 className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
                   !isLogin 
@@ -260,9 +295,6 @@ export default function UnifiedAuth({ scrolled }) {
           </div>
 
           <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-white/10">
-            {/* Hidden CAPTCHA container for Clerk */}
-            <div id="clerk-captcha" style={{ display: "none" }}></div>
-            
             {errorMsg && (
               <p className="text-red-400 bg-red-400/10 p-2 rounded-lg text-sm mb-4 text-center">
                 {errorMsg}
@@ -280,13 +312,13 @@ export default function UnifiedAuth({ scrolled }) {
                     className={`relative w-full flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-medium shadow-sm transition-all duration-200 ${
                       btn.disabled
                         ? "opacity-50 cursor-not-allowed bg-white/5 border border-white/10 text-gray-500"
-                        : "bg-white/5 border border-white/10 text-gray-100 hover:bg-white/20"
+                        : "bg-white/5 border border-white/10 text-gray-100 hover:bg-white/20 active:scale-[0.99]"
                     } ${loading && !btn.disabled && pendingProvider !== btn.provider ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     <div className="flex-shrink-0">{btn.icon}</div>
-                    <span>
+                    <span className="truncate">
                       {isLogin 
-                        ? btn.label.replace("Sign up", "Continue") 
+                        ? btn.label 
                         : btn.label.replace("Continue", "Sign up")}
                     </span>
                     {isThisButtonLoading && (
@@ -303,11 +335,19 @@ export default function UnifiedAuth({ scrolled }) {
 
             <p className="text-center text-xs text-gray-500">
               By {isLogin ? "continuing" : "signing up"}, you agree to our{" "}
-              <Link href="/terms" className="text-green-400 hover:text-green-300">
+              <Link 
+                href="/terms" 
+                className="text-green-400 hover:text-green-300 transition-colors"
+                prefetch={true}
+              >
                 Terms
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-green-400 hover:text-green-300">
+              <Link 
+                href="/privacy" 
+                className="text-green-400 hover:text-green-300 transition-colors"
+                prefetch={true}
+              >
                 Privacy Policy
               </Link>
             </p>
@@ -315,7 +355,7 @@ export default function UnifiedAuth({ scrolled }) {
 
           <div className="mt-6 text-center">
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={handleToggleAuthMode}
               disabled={loading}
               className={`text-gray-400 hover:text-white text-sm underline underline-offset-4 hover:underline-offset-2 transition-all ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
